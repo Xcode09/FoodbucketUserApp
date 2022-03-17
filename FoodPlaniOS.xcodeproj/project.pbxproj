@@ -7,18 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13A15E7227A957F3004B0C12 /* ShopsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A15E7127A957F3004B0C12 /* ShopsList.swift */; };
+		13B680DF27E3917B00D89830 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B680DE27E3917B00D89830 /* Service.swift */; };
+		13B680E227E395FD00D89830 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B680E127E395FD00D89830 /* Models.swift */; };
+		13B680E527E39E6F00D89830 /* Contants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B680E427E39E6F00D89830 /* Contants.swift */; };
+		13B680EB27E3AE4200D89830 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 13B680EA27E3AE4200D89830 /* Kingfisher */; };
+		13BD508B276FACEA0054B579 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 13BD5089276FACEA0054B579 /* Localizable.strings */; };
+		13C0CA7D2772167400B254C7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C0CA7C2772167400B254C7 /* Extensions.swift */; };
 		13C1C02F27663CD20032E6AB /* FoodPlaniOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1C02E27663CD20032E6AB /* FoodPlaniOSApp.swift */; };
 		13C1C03127663CD20032E6AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1C03027663CD20032E6AB /* ContentView.swift */; };
 		13C1C03327663CD40032E6AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C1C03227663CD40032E6AB /* Assets.xcassets */; };
 		13C1C03627663CD40032E6AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C1C03527663CD40032E6AB /* Preview Assets.xcassets */; };
+		13C1C03E27663D0C0032E6AB /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1C03D27663D0B0032E6AB /* HomeVC.swift */; };
+		13C1C04127664C270032E6AB /* CheckViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1C04027664C270032E6AB /* CheckViewVC.swift */; };
+		13C1C04427664ECE0032E6AB /* FavouriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1C04327664ECE0032E6AB /* FavouriteVC.swift */; };
+		13DFDCFB276A3F4500570519 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DFDCFA276A3F4500570519 /* DetailVC.swift */; };
+		13FA72382768BBE200A4BCDE /* CodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA72372768BBE200A4BCDE /* CodeScanner.swift */; };
+		13FA723A2768BC5400A4BCDE /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA72392768BC5400A4BCDE /* ScannerView.swift */; };
+		13FA723D2768BDF000A4BCDE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA723C2768BDF000A4BCDE /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13A15E7127A957F3004B0C12 /* ShopsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsList.swift; sourceTree = "<group>"; };
+		13B680DE27E3917B00D89830 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		13B680E127E395FD00D89830 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		13B680E427E39E6F00D89830 /* Contants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contants.swift; sourceTree = "<group>"; };
+		13BD508A276FACEA0054B579 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		13C0CA7C2772167400B254C7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		13C1C02B27663CD20032E6AB /* FoodPlaniOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodPlaniOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13C1C02E27663CD20032E6AB /* FoodPlaniOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPlaniOSApp.swift; sourceTree = "<group>"; };
 		13C1C03027663CD20032E6AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		13C1C03227663CD40032E6AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13C1C03527663CD40032E6AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		13C1C03D27663D0B0032E6AB /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		13C1C04027664C270032E6AB /* CheckViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckViewVC.swift; sourceTree = "<group>"; };
+		13C1C04327664ECE0032E6AB /* FavouriteVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteVC.swift; sourceTree = "<group>"; };
+		13DFDCFA276A3F4500570519 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
+		13FA72372768BBE200A4BCDE /* CodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScanner.swift; sourceTree = "<group>"; };
+		13FA72392768BC5400A4BCDE /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		13FA723C2768BDF000A4BCDE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,15 +53,49 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13B680EB27E3AE4200D89830 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13A15E7027A957D6004B0C12 /* ShopsList */ = {
+			isa = PBXGroup;
+			children = (
+				13A15E7127A957F3004B0C12 /* ShopsList.swift */,
+			);
+			path = ShopsList;
+			sourceTree = "<group>";
+		};
+		13B680DD27E3916100D89830 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				13B680DE27E3917B00D89830 /* Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		13B680E027E395F200D89830 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				13B680E127E395FD00D89830 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		13B680E327E39E6200D89830 /* Contants */ = {
+			isa = PBXGroup;
+			children = (
+				13B680E427E39E6F00D89830 /* Contants.swift */,
+			);
+			path = Contants;
+			sourceTree = "<group>";
+		};
 		13C1C02227663CD20032E6AB = {
 			isa = PBXGroup;
 			children = (
+				13BD5089276FACEA0054B579 /* Localizable.strings */,
 				13C1C02D27663CD20032E6AB /* FoodPlaniOS */,
 				13C1C02C27663CD20032E6AB /* Products */,
 			);
@@ -51,10 +112,20 @@
 		13C1C02D27663CD20032E6AB /* FoodPlaniOS */ = {
 			isa = PBXGroup;
 			children = (
+				13B680E327E39E6200D89830 /* Contants */,
+				13B680E027E395F200D89830 /* Models */,
+				13B680DD27E3916100D89830 /* Service */,
+				13DFDCF9276A3F2E00570519 /* DetailVC */,
+				13FA723B2768BDB200A4BCDE /* ProfileView */,
+				13FA72362768BBCE00A4BCDE /* CodeScanner */,
+				13C1C04227664EB90032E6AB /* FavouriteItems */,
+				13C1C03F27664C0F0032E6AB /* CheckOutVC */,
+				13C1C03C27663CE90032E6AB /* HomeVC */,
 				13C1C02E27663CD20032E6AB /* FoodPlaniOSApp.swift */,
 				13C1C03027663CD20032E6AB /* ContentView.swift */,
 				13C1C03227663CD40032E6AB /* Assets.xcassets */,
 				13C1C03427663CD40032E6AB /* Preview Content */,
+				13C0CA7C2772167400B254C7 /* Extensions.swift */,
 			);
 			path = FoodPlaniOS;
 			sourceTree = "<group>";
@@ -65,6 +136,56 @@
 				13C1C03527663CD40032E6AB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		13C1C03C27663CE90032E6AB /* HomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				13C1C03D27663D0B0032E6AB /* HomeVC.swift */,
+			);
+			path = HomeVC;
+			sourceTree = "<group>";
+		};
+		13C1C03F27664C0F0032E6AB /* CheckOutVC */ = {
+			isa = PBXGroup;
+			children = (
+				13C1C04027664C270032E6AB /* CheckViewVC.swift */,
+			);
+			path = CheckOutVC;
+			sourceTree = "<group>";
+		};
+		13C1C04227664EB90032E6AB /* FavouriteItems */ = {
+			isa = PBXGroup;
+			children = (
+				13C1C04327664ECE0032E6AB /* FavouriteVC.swift */,
+			);
+			path = FavouriteItems;
+			sourceTree = "<group>";
+		};
+		13DFDCF9276A3F2E00570519 /* DetailVC */ = {
+			isa = PBXGroup;
+			children = (
+				13A15E7027A957D6004B0C12 /* ShopsList */,
+				13DFDCFA276A3F4500570519 /* DetailVC.swift */,
+			);
+			path = DetailVC;
+			sourceTree = "<group>";
+		};
+		13FA72362768BBCE00A4BCDE /* CodeScanner */ = {
+			isa = PBXGroup;
+			children = (
+				13FA72372768BBE200A4BCDE /* CodeScanner.swift */,
+				13FA72392768BC5400A4BCDE /* ScannerView.swift */,
+			);
+			path = CodeScanner;
+			sourceTree = "<group>";
+		};
+		13FA723B2768BDB200A4BCDE /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				13FA723C2768BDF000A4BCDE /* ProfileView.swift */,
+			);
+			path = ProfileView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +204,9 @@
 			dependencies = (
 			);
 			name = FoodPlaniOS;
+			packageProductDependencies = (
+				13B680EA27E3AE4200D89830 /* Kingfisher */,
+			);
 			productName = FoodPlaniOS;
 			productReference = 13C1C02B27663CD20032E6AB /* FoodPlaniOS.app */;
 			productType = "com.apple.product-type.application";
@@ -109,8 +233,12 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 13C1C02227663CD20032E6AB;
+			packageReferences = (
+				13B680E927E3AE4200D89830 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 13C1C02C27663CD20032E6AB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13C1C03627663CD40032E6AB /* Preview Assets.xcassets in Resources */,
+				13BD508B276FACEA0054B579 /* Localizable.strings in Resources */,
 				13C1C03327663CD40032E6AB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,12 +266,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13FA723D2768BDF000A4BCDE /* ProfileView.swift in Sources */,
+				13B680E227E395FD00D89830 /* Models.swift in Sources */,
+				13C1C03E27663D0C0032E6AB /* HomeVC.swift in Sources */,
+				13B680E527E39E6F00D89830 /* Contants.swift in Sources */,
+				13C1C04427664ECE0032E6AB /* FavouriteVC.swift in Sources */,
 				13C1C03127663CD20032E6AB /* ContentView.swift in Sources */,
+				13FA72382768BBE200A4BCDE /* CodeScanner.swift in Sources */,
+				13B680DF27E3917B00D89830 /* Service.swift in Sources */,
+				13A15E7227A957F3004B0C12 /* ShopsList.swift in Sources */,
+				13C0CA7D2772167400B254C7 /* Extensions.swift in Sources */,
+				13DFDCFB276A3F4500570519 /* DetailVC.swift in Sources */,
+				13C1C04127664C270032E6AB /* CheckViewVC.swift in Sources */,
+				13FA723A2768BC5400A4BCDE /* ScannerView.swift in Sources */,
 				13C1C02F27663CD20032E6AB /* FoodPlaniOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		13BD5089276FACEA0054B579 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				13BD508A276FACEA0054B579 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		13C1C03727663CD40032E6AB /* Debug */ = {
@@ -202,6 +354,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -256,6 +409,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -277,6 +431,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -286,7 +441,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -306,6 +461,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -315,7 +471,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -341,6 +497,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		13B680E927E3AE4200D89830 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		13B680EA27E3AE4200D89830 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13B680E927E3AE4200D89830 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 13C1C02327663CD20032E6AB /* Project object */;
 }

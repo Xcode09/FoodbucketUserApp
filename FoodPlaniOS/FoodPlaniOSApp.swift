@@ -11,7 +11,9 @@ import SwiftUI
 struct FoodPlaniOSApp: App {
     var body: some Scene {
         WindowGroup {
+            //ShopsList()
             ContentView()
+            //demoApp()
         }
     }
 }
