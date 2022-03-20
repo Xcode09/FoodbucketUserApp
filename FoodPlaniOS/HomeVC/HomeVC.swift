@@ -8,26 +8,24 @@
 import SwiftUI
 import Combine
 import Kingfisher
-
+import Alamofire
 class HomeVCViewModel:ObservableObject{
     @Published var receips:[Recipes] = []
     @Published var errorMessage = ""
+    var rec_id = ""
     var cancellationToken: AnyCancellable?
     
     func getRecipes(_ url:String){
-        let pu : AnyPublisher<RecipesModel,NetworkError> =  Service.shared.fetchData(url: url, method: "Get", isHeaderToke: true)
-        cancellationToken = pu.sink { err in
-            switch err{
-            case .failure(let erro):
-                self.errorMessage = erro.initialError
-            default:
-                break
+        let pu : AnyPublisher<DataResponse<RecipesModel, NetworkError>, Never> =  Service.shared.fetchData(url: url, method: "GET", isHeaderToke: true)
+        cancellationToken = pu.sink { (dataResponse) in
+            if dataResponse.error != nil{
+                self.errorMessage = dataResponse.error?.initialError ?? ""
+            }else{
+                if let data = dataResponse.value?.data{
+                    self.receips =  data
+                }
+                
             }
-        } receiveValue: { model in
-            guard let da = model.data else{
-                return
-            }
-            self.receips = da
         }
     }
 }
@@ -46,10 +44,7 @@ struct HomeVC: View {
                         VStack(alignment: .leading){
                             horizontalStoires
                             headerView
-                            cellListView.onTapGesture {
-                                isNavigate.toggle()
-                            }
-                            
+                            cellListView
                             Spacer()
                         }
                     }
@@ -64,7 +59,7 @@ struct HomeVC: View {
                     }
                 }
                 .sheet(isPresented: $isNavigate, onDismiss: nil) {
-                    DetailVC()
+                    DetailVC(id: vm.rec_id)
                 }
             }
         }
@@ -131,13 +126,16 @@ struct HomeVC: View {
                             //Spacer()
                         }
                     }.frame(height:140)
+                        .onTapGesture {
+                            vm.rec_id = "\(rec.id ?? 0)"
+                            self.isNavigate.toggle()
+                        }
                     
                 }
             }
             
             
         }
-        
     }
     
     

@@ -7,36 +7,71 @@
 
 import Foundation
 import Combine
-
+import MultipartForm
+import Alamofire
 struct NetworkError: Error {
     let initialError: String
     //  let backendError: BackendError?
 }
-protocol ServiceProtocol {
-    func fetchData<T:Codable>(url:String,method:String,isHeaderToke:Bool) -> AnyPublisher<T,NetworkError>
-}
+//protocol ServiceProtocol {
+//    func fetchData<T:Codable>(url:String,method:String,isHeaderToke:Bool) -> AnyPublisher<T,NetworkError>
+//}
 
 
-class Service: ServiceProtocol {
+class Service {
     
     
-    static let shared: ServiceProtocol = Service()
+    static let shared = Service()
     private init() { }
     
-    func fetchData<T:Codable>(url:String,method:String,isHeaderToke:Bool) -> AnyPublisher<T, NetworkError> {
-        guard let url = URL(string: url) else {
-            return Fail(error: NetworkError.init(initialError: "Invalid URL")).eraseToAnyPublisher()
+    func fetchData<T:Codable>(url:String,method:String="GET",isHeaderToke:Bool=false,parameters:[String:String]=[:]) -> AnyPublisher<DataResponse<T, NetworkError>, Never> {
+        let url : URLConvertible  = URL(string: url)!
+        //var request = URLRequest(url: url)
+        var headers : HTTPHeaders = [
+            "Content-Type":"application/json"
+        ]
+        if let user : LoginDataModel = UserDefaults.standard.get(StringKeys.saveUserKey) {
+            headers.add(name: "Authorization", value: "Bearer \(user.accessToken ?? "")")
         }
-        var request = URLRequest(url: url)
-        request.httpMethod = method
-        request.addValue("Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMTJhOTg2YjcyZmQxODlhMjg1NjZjNWJmMzI5YzYwMGM5NDY2OTY3OTgyNDZjNzkyNjQ0MWJhMTJiM2RhYjg2ZTAyYTMzNjFjNjQ5ZDVmMWUiLCJpYXQiOjE2NDc0NTcwMjguMDgzMTk2LCJuYmYiOjE2NDc0NTcwMjguMDgzMjAxLCJleHAiOjE2Nzg5OTMwMjguMDc4NjgzLCJzdWIiOiI4Iiwic2NvcGVzIjpbXX0.RnmJuIwigkahH_WR486P-3C6jqpZKrUZapjYp4ZjOP18DgZTg_pSnBLa19ipnu9yMZcVbubYE-fg_gMZm2dZFh4Ltq8rRWdaMSvO-TdOkQ8pvM5rCPkCDq4puMmQ6yfkYKRW_HwF6ct5uU0PQ1EM8be-IbBUcnQ3yOXOLHcPZBGgiHWjHIj_a-jGwAkQpKezJHOOeMRNiA2Y5oy9wTQ_bGnTxRDT0tM_rFmt2IcCGFHq2hxU3vdjy3yJilw8qJBHitR98AbMGe0RciLTjaEf70ZH4JlgbgIkTkWEBPcZWdukmaN7_G3vyJzC-W3N-agc9RQYjnz4KbDwCOHcn09FWfuIv67YZZdwE_epqHBmloL9H27wndQlrwKjT4qptusYkQvaiYZ-f0UZHV7oqQmGhk4NA6Mp0oj4PS2SqwLUctxLzpGJMU3yTy9dCyB-j9HDsXd4JkPRAACRbbzENen1a9jaUWbWTZkH7WqZV7F7e2bexNJBV_VYj9NNHYPkjsnneNwJNYKQtKGZQrx3-SJU7VbqOG8L5N1PfIEI3C5IvIZcIm8P6GIpbGCAm3MCmTQ3nVGx_7HNHoDInAWa1-WI5hKdqxDTwmShm_e5_16C-G6H1egUKF_gECsYX3oUCo_PdKwYEWrqe0822lgIqH3HwO36T2mYDs7kSzzVYfTDEsM", forHTTPHeaderField: "Authorization")
+        return AF.request(url, method: HTTPMethod.init(rawValue: method), parameters: parameters.isEmpty == true ? nil : parameters, encoder:.json, headers: headers)
+            .validate()
+            .publishDecodable(type: T.self)
+            .map { response in
+                response.mapError { error in
+                    let backendError = response.data.flatMap { try? JSONDecoder().decode(T.self, from: $0)}
+                    return NetworkError(initialError: error.localizedDescription)
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
         
-        return URLSession.shared.dataTaskPublisher(for: request)
-            .map(\.data)
-            .decode(type: T.self, decoder: JSONDecoder())
-            .mapError({ error in
-                return .init(initialError: error.localizedDescription)
-            })
+    }
+    
+    func uploadFormData<T:Codable>(url:String,method:String="GET",isHeaderToke:Bool=false,parameters:[String:String]=[:],imgData:Data)-> AnyPublisher<DataResponse<T, NetworkError>, Never>
+    
+    {
+        var headers : HTTPHeaders = [
+            "Content-Type":"application/json"
+        ]
+        if let user : LoginDataModel = UserDefaults.standard.get(StringKeys.saveUserKey) {
+            headers.add(name: "Authorization", value: "Bearer \(user.accessToken ?? "")")
+        }
+        
+        
+        return AF.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(imgData, withName: "imageUrl",fileName: "userProfile.jpg", mimeType: "image/jpg")
+            for (key, value) in parameters {
+                multipartFormData.append(value.data(using:.utf8)!, withName: key)
+            }
+        }, to: url,method: HTTPMethod.init(rawValue: method),headers:headers)
+            .validate()
+            .publishDecodable(type: T.self)
+            .map { response in
+                response.mapError { error in
+                    let backendError = response.data.flatMap { try? JSONDecoder().decode(BasicModel.self, from: $0)}
+                    return NetworkError(initialError: backendError?.message ?? error.localizedDescription)
+                }
+            }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }

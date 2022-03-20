@@ -46,3 +46,34 @@ extension Color{
     static let bgColor = Color(UIColor.white)
     static let secondaryTextColor = Color(UIColor.lightText)
 }
+
+extension String{
+    func parseToInt() -> Int? {
+        return Int(self.components(separatedBy: CharacterSet.decimalDigits.inverted).joined())
+    }
+}
+extension UserDefaults{
+    func save<T:Codable>(_ ey:String,model:T){
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(model) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey:ey)
+            defaults.synchronize()
+        }
+    }
+    func get<T:Codable>(_ ey:String)->T?{
+        let defaults = UserDefaults.standard
+        if let savedPerson = defaults.object(forKey: ey) as? Data {
+            let decoder = JSONDecoder()
+            if let loadedPerson = try? decoder.decode(T.self, from: savedPerson) {
+                return loadedPerson
+            }
+        }
+        return nil
+    }
+    
+    func remove(_ ey:String){
+        UserDefaults.standard.removeObject(forKey: ey)
+        UserDefaults.standard.synchronize()
+    }
+}

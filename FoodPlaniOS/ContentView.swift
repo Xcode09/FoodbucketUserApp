@@ -6,28 +6,39 @@
 //
 
 import SwiftUI
-
+import Combine
 struct ContentView: View {
+    @State var isLoginTrue = false
+    @EnvironmentObject var vm: UserStateViewModel
     var body: some View {
         ZStack{
-            TabView{
-                HomeVC().tabItem {
-                    Label("Menu", systemImage: ImagesName.house_fill.rawValue)
-                }
-                CheckViewVC().tabItem {
-                    Label("Check", systemImage: "list.dash")
-                }
-//                ScannerView().tabItem {
-//                    Label("QR Scan", systemImage: "list.dash")
-//                }
-                FavouriteVC().tabItem {
-                    Label("Favourite", systemImage: ImagesName.heart.rawValue)
-                }
-                ProfileView().tabItem {
-                    Label("Profile", systemImage: ImagesName.user.rawValue)
+           if vm.isLoggedIn{
+                TabView{
+                    HomeVC().tabItem {
+                        Label("Menu", systemImage: ImagesName.house_fill.rawValue)
+                    }
+                    CheckViewVC().tabItem {
+                        Label("Check", systemImage: "list.dash")
+                    }
+    //                ScannerView().tabItem {
+    //                    Label("QR Scan", systemImage: "list.dash")
+    //                }
+                    FavouriteVC().tabItem {
+                        Label("Favourite", systemImage: ImagesName.heart.rawValue)
+                    }
+                    ProfileView().tabItem {
+                        Label("Profile", systemImage: ImagesName.user.rawValue)
+                    }
                 }
             }
+            else{
+                LoginView()
+            }
+            
         }
+        .onAppear(perform: {
+            vm.getUserData(key: StringKeys.saveUserKey)
+        })
     }
 }
 

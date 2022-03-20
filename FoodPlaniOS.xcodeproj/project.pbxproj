@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		13A15E7227A957F3004B0C12 /* ShopsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A15E7127A957F3004B0C12 /* ShopsList.swift */; };
+		13AA49D827E4CAE900DA7878 /* MultipartForm in Frameworks */ = {isa = PBXBuildFile; productRef = 13AA49D727E4CAE900DA7878 /* MultipartForm */; };
+		13AF2D3827E7955400D62D28 /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AF2D3727E7955400D62D28 /* ViewModels.swift */; };
 		13B680DF27E3917B00D89830 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B680DE27E3917B00D89830 /* Service.swift */; };
 		13B680E227E395FD00D89830 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B680E127E395FD00D89830 /* Models.swift */; };
 		13B680E527E39E6F00D89830 /* Contants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B680E427E39E6F00D89830 /* Contants.swift */; };
@@ -25,10 +27,14 @@
 		13FA72382768BBE200A4BCDE /* CodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA72372768BBE200A4BCDE /* CodeScanner.swift */; };
 		13FA723A2768BC5400A4BCDE /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA72392768BC5400A4BCDE /* ScannerView.swift */; };
 		13FA723D2768BDF000A4BCDE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA723C2768BDF000A4BCDE /* ProfileView.swift */; };
+		13FAFD4427E5F7FA009A2C9F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 13FAFD4327E5F7FA009A2C9F /* Alamofire */; };
+		13FAFD4727E619D3009A2C9F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FAFD4627E619D3009A2C9F /* LoginView.swift */; };
+		13FAFD4927E62172009A2C9F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FAFD4827E62172009A2C9F /* SignUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		13A15E7127A957F3004B0C12 /* ShopsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsList.swift; sourceTree = "<group>"; };
+		13AF2D3727E7955400D62D28 /* ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
 		13B680DE27E3917B00D89830 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		13B680E127E395FD00D89830 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		13B680E427E39E6F00D89830 /* Contants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contants.swift; sourceTree = "<group>"; };
@@ -46,6 +52,8 @@
 		13FA72372768BBE200A4BCDE /* CodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScanner.swift; sourceTree = "<group>"; };
 		13FA72392768BC5400A4BCDE /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		13FA723C2768BDF000A4BCDE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		13FAFD4627E619D3009A2C9F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		13FAFD4827E62172009A2C9F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +61,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13FAFD4427E5F7FA009A2C9F /* Alamofire in Frameworks */,
 				13B680EB27E3AE4200D89830 /* Kingfisher in Frameworks */,
+				13AA49D827E4CAE900DA7878 /* MultipartForm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +76,14 @@
 				13A15E7127A957F3004B0C12 /* ShopsList.swift */,
 			);
 			path = ShopsList;
+			sourceTree = "<group>";
+		};
+		13AF2D3627E7953800D62D28 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				13AF2D3727E7955400D62D28 /* ViewModels.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		13B680DD27E3916100D89830 /* Service */ = {
@@ -112,6 +130,8 @@
 		13C1C02D27663CD20032E6AB /* FoodPlaniOS */ = {
 			isa = PBXGroup;
 			children = (
+				13AF2D3627E7953800D62D28 /* ViewModels */,
+				13FAFD4527E619BC009A2C9F /* AuthenticationViews */,
 				13B680E327E39E6200D89830 /* Contants */,
 				13B680E027E395F200D89830 /* Models */,
 				13B680DD27E3916100D89830 /* Service */,
@@ -188,6 +208,15 @@
 			path = ProfileView;
 			sourceTree = "<group>";
 		};
+		13FAFD4527E619BC009A2C9F /* AuthenticationViews */ = {
+			isa = PBXGroup;
+			children = (
+				13FAFD4627E619D3009A2C9F /* LoginView.swift */,
+				13FAFD4827E62172009A2C9F /* SignUpView.swift */,
+			);
+			path = AuthenticationViews;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -206,6 +235,8 @@
 			name = FoodPlaniOS;
 			packageProductDependencies = (
 				13B680EA27E3AE4200D89830 /* Kingfisher */,
+				13AA49D727E4CAE900DA7878 /* MultipartForm */,
+				13FAFD4327E5F7FA009A2C9F /* Alamofire */,
 			);
 			productName = FoodPlaniOS;
 			productReference = 13C1C02B27663CD20032E6AB /* FoodPlaniOS.app */;
@@ -238,6 +269,8 @@
 			mainGroup = 13C1C02227663CD20032E6AB;
 			packageReferences = (
 				13B680E927E3AE4200D89830 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				13AA49D627E4CAE900DA7878 /* XCRemoteSwiftPackageReference "MultipartForm" */,
+				13FAFD4227E5F7FA009A2C9F /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 13C1C02C27663CD20032E6AB /* Products */;
 			projectDirPath = "";
@@ -269,14 +302,17 @@
 				13FA723D2768BDF000A4BCDE /* ProfileView.swift in Sources */,
 				13B680E227E395FD00D89830 /* Models.swift in Sources */,
 				13C1C03E27663D0C0032E6AB /* HomeVC.swift in Sources */,
+				13FAFD4727E619D3009A2C9F /* LoginView.swift in Sources */,
 				13B680E527E39E6F00D89830 /* Contants.swift in Sources */,
 				13C1C04427664ECE0032E6AB /* FavouriteVC.swift in Sources */,
 				13C1C03127663CD20032E6AB /* ContentView.swift in Sources */,
 				13FA72382768BBE200A4BCDE /* CodeScanner.swift in Sources */,
 				13B680DF27E3917B00D89830 /* Service.swift in Sources */,
 				13A15E7227A957F3004B0C12 /* ShopsList.swift in Sources */,
+				13AF2D3827E7955400D62D28 /* ViewModels.swift in Sources */,
 				13C0CA7D2772167400B254C7 /* Extensions.swift in Sources */,
 				13DFDCFB276A3F4500570519 /* DetailVC.swift in Sources */,
+				13FAFD4927E62172009A2C9F /* SignUpView.swift in Sources */,
 				13C1C04127664C270032E6AB /* CheckViewVC.swift in Sources */,
 				13FA723A2768BC5400A4BCDE /* ScannerView.swift in Sources */,
 				13C1C02F27663CD20032E6AB /* FoodPlaniOSApp.swift in Sources */,
@@ -426,6 +462,7 @@
 				DEVELOPMENT_TEAM = H874Q37WU8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App wants to access library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -456,6 +493,7 @@
 				DEVELOPMENT_TEAM = H874Q37WU8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App wants to access library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -499,6 +537,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		13AA49D627E4CAE900DA7878 /* XCRemoteSwiftPackageReference "MultipartForm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/davbeck/MultipartForm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
 		13B680E927E3AE4200D89830 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -507,13 +553,31 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		13FAFD4227E5F7FA009A2C9F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		13AA49D727E4CAE900DA7878 /* MultipartForm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13AA49D627E4CAE900DA7878 /* XCRemoteSwiftPackageReference "MultipartForm" */;
+			productName = MultipartForm;
+		};
 		13B680EA27E3AE4200D89830 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 13B680E927E3AE4200D89830 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		13FAFD4327E5F7FA009A2C9F /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13FAFD4227E5F7FA009A2C9F /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
