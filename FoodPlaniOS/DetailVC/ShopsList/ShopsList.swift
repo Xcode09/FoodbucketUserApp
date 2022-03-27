@@ -6,19 +6,31 @@
 //
 
 import SwiftUI
-
+import Introspect
 struct ShopsList: View {
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
-        ZStack{
-            Color(UIColor.secondarySystemBackground).edgesIgnoringSafeArea(.all)
+        NavigationView{
             ScrollView{
                 ForEach(0..<2){
                     _ in
                     ShopCellView()
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle(Text("Near by shops"))
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "chevron.left")
+                            .resizable()
+                    }
+                }
+            }
         }
-        
+        .background(Color(UIColor.secondarySystemBackground).edgesIgnoringSafeArea(.all))
     }
 }
 

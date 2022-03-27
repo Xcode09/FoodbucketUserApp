@@ -38,8 +38,12 @@ class Service {
             .publishDecodable(type: T.self)
             .map { response in
                 response.mapError { error in
-                    let backendError = response.data.flatMap { try? JSONDecoder().decode(T.self, from: $0)}
-                    return NetworkError(initialError: error.localizedDescription)
+                    if error.responseCode == 500{
+                        return NetworkError(initialError:StringKeys.authError)
+                    }else{
+                        let backendError = response.data.flatMap { try? JSONDecoder().decode(BasicModel.self, from: $0)}
+                        return NetworkError(initialError:  backendError?.message ?? error.localizedDescription)
+                    }
                 }
             }
             .receive(on: DispatchQueue.main)

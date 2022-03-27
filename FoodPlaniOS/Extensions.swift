@@ -45,6 +45,8 @@ extension Color{
     static let textColor = Color(UIColor.black)
     static let bgColor = Color(UIColor.white)
     static let secondaryTextColor = Color(UIColor.lightText)
+    
+    static let iconTintColor = Color(UIColor(named: "IconTintColor")!)
 }
 
 extension String{

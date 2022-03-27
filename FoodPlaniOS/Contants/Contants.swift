@@ -16,11 +16,15 @@ struct ApiEndPoints{
     
     static let addRecentRecipe = "\(ApiEndPoints().baseURL)customer/recent-recipe-add"
     
+    static let addFavouriteRecipe = "\(ApiEndPoints().baseURL)customer/favourite-add"
+    
     static let customerAllRecentRecipe = "\(ApiEndPoints().baseURL)customer/recent-recipe"
     
     static let customerFavouriteRecipesView = "\(ApiEndPoints().baseURL)customer/favourite-view"
+    static let distance = "\(ApiEndPoints().baseURL)customer/distance"
 }
 
 struct StringKeys{
     static let saveUserKey = "user"
+    static let authError = "AuthError"
 }

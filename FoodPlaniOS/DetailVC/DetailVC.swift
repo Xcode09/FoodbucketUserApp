@@ -8,13 +8,15 @@
 import SwiftUI
 import Kingfisher
 import Combine
+import AlertToast
 import Alamofire
 fileprivate class DetailVCModelView:ObservableObject{
     @Published var receips:[Recipes] = []
     @Published var errorMessage = ""
     @Published var quantity = 1
+    @EnvironmentObject var userState: UserStateViewModel
+    //    @Published var showToast = false
     var cancellationToken: AnyCancellable?
-    
     func getSelectRecipe(_ url:String,id:String){
         let pu : AnyPublisher<DataResponse<RecipesModel, NetworkError>, Never> =  Service.shared.fetchData(url: url, method: "POST", isHeaderToke: true,parameters: ["r_id":id])
         cancellationToken = pu.sink { (dataResponse) in
@@ -28,19 +30,37 @@ fileprivate class DetailVCModelView:ObservableObject{
             }
         }
     }
+    
+    func addRecipeToFav(){
+        let pu : AnyPublisher<DataResponse<BasicModel, NetworkError>, Never> =  Service.shared.fetchData(url: ApiEndPoints.addFavouriteRecipe, method: "POST", isHeaderToke: true,parameters: ["r_id":"\(self.receips[0].id ?? 0)"])
+        cancellationToken = pu.sink { (dataResponse) in
+            if dataResponse.error != nil{
+                self.errorMessage = dataResponse.error?.initialError ?? ""
+            }else{
+                if let data = dataResponse.value{
+                    //self.receips =  data
+                    self.errorMessage = data.message
+                }
+                
+            }
+        }
+    }
 }
 struct DetailVC: View {
     @State var isShopListTapped = false
-   @ObservedObject fileprivate var vm = DetailVCModelView()
+    @State var uiTabarController: UITabBarController?
+    @State var showToast = false
+    @ObservedObject fileprivate var vm = DetailVCModelView()
     var r_id : String
+    @Environment(\.presentationMode) var presentationMode
     init(id:String){
         self.r_id = id
         vm.getSelectRecipe(ApiEndPoints.customerSelectRecipes, id: id)
     }
     
     var body: some View {
-        if vm.receips.count > 0{
-            NavigationView{
+        return NavigationView{
+            if vm.receips.count > 0 {
                 VStack{
                     ScrollView{
                         mainHeaderView
@@ -63,7 +83,7 @@ struct DetailVC: View {
                         horizontalView
                         
                         stepsView.padding([.all], 5)
-                            
+                        
                     }
                     bottomNavBar.padding()
                 }
@@ -73,23 +93,37 @@ struct DetailVC: View {
                     ToolbarItemGroup(placement: .navigationBarTrailing) {
                         Button(action: {}) {
                             Image.init(systemName: "square.and.arrow.up")
+                                .foregroundColor(.iconTintColor)
                         }
                         
                         Button(action: {}) {
                             Text("...").font(.system(size: 18, weight: .medium, design: .default))
+                                .foregroundColor(.iconTintColor)
+                        }
+                    }
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "chevron.left")
+                                .resizable()
                         }
                     }
                 })
                 .edgesIgnoringSafeArea(.all)
-                
-                .sheet(isPresented: $isShopListTapped, onDismiss: nil) {
+                .fullScreenCover(isPresented: $isShopListTapped, onDismiss: nil) {
                     ShopsList()
                 }
+                .toast(isPresenting: $showToast) {
+                    AlertToast(type: .regular, title:vm.errorMessage)
+                }
             }
+            
         }
-        else{
-            Text(vm.errorMessage)
+        .onChange(of: vm.errorMessage) { _ in
+            showToast.toggle()
         }
+        
         
         
     }
@@ -107,34 +141,40 @@ struct DetailVC: View {
                         VStack(alignment:.center,spacing:10){
                             KFImage.url(URL(string:ingre.ingredientName?[0].imageURL ?? ""))
                                 .resizable()
+                                .diskCacheExpiration(.never)
+                                .cacheMemoryOnly(false)
                                 .frame(width:120,height: 80)
                                 .cornerRadius(10)
                             Text(ingre.ingredientName?[0].name ?? "").foregroundColor(.textColor)
-                            Text("\(1*vm.quantity)").foregroundColor(.red)
+                            
+                            let qunty = Int(ingre.quantity?.replacingOccurrences(of: " ", with: "") ?? "") ?? 1
+                            Text("\(qunty*vm.quantity) \(ingre.ingredientName?[0].unit ?? "")").foregroundColor(.red)
                         }
-                            .background(Color.bgColor)
-                            .cornerRadius(10)
-                            .shadow(color: .gray, radius: 1, x: 1, y: 1)
+                        .background(Color.bgColor)
+                        //                            .cornerRadius(10)
+                        //                            .shadow(color: .gray, radius: 1, x: 1, y: 1)
                     }
                 }.padding([.all], 5)
             }.frame(height:150)
-                
-                
-        }.padding([.all], 5)
             
+            
+        }.padding([.all], 5)
+        
         
         
     }
     
     private var mainHeaderView:some View{
         VStack(alignment:.leading){
-            KFImage.url(URL(string:vm.receips[0].imageURL ?? ""))
+            KFImage.url(URL(string:vm.receips.count > 0 ? vm.receips[0].imageURL ?? "" : ""))
                 .resizable()
+                .diskCacheExpiration(.never)
+                .cacheMemoryOnly(false)
                 .aspectRatio(contentMode: .fill)
-                .overlay(ImageOverlay(message:vm.receips[0].category ?? "",subText:vm.receips[0].cookingTime ?? "",subText2:vm.receips[0].servings ?? "",subImage: ImagesName.clock.rawValue,subImage1: ImagesName.user.rawValue,isBottomViewEnable: true,lineL: 3), alignment: .bottomLeading)
+                .overlay(ImageOverlay(message:vm.receips.count > 0 ? vm.receips[0].category ?? "" : "",subText:vm.receips.count > 0 ? vm.receips[0].cookingTime ?? "":"",subText2:vm.receips.count > 0 ? vm.receips[0].servings ?? "" : "",subImage: ImagesName.clock.rawValue,subImage1: ImagesName.user.rawValue,isBottomViewEnable: true,lineL: 3), alignment: .bottomLeading)
             
         }
-            
+        
     }
     
     private var stepsView:some View{
@@ -147,6 +187,8 @@ struct DetailVC: View {
                         .foregroundColor(.textColor)
                     KFImage.url(URL(string:step.imageURL ?? ""))
                         .resizable()
+                        .diskCacheExpiration(.never)
+                        .cacheMemoryOnly(false)
                     Text(step.stepRecipeDescription ?? "")
                     Divider()
                 }
@@ -158,23 +200,41 @@ struct DetailVC: View {
     private var bottomNavBar:some View{
         HStack(spacing:10){
             Spacer()
-            Button(action: {}) {
+            
+            Button(action: {
+                vm.addRecipeToFav()
+            }) {
                 VStack{
                     Image(systemName: "heart")
                         .resizable()
                         .frame(maxWidth:20,maxHeight: 20)
                         .clipped()
+                        .foregroundColor(.iconTintColor)
                 }
             }
             Spacer()
+            
+//            NavigationLink(destination: {
+//                ShopsList()
+//            }) {
+//                VStack{
+//                    Image("cart")
+//                        .resizable()
+//                        .frame(maxWidth:20,maxHeight: 20)
+//                        .clipped()
+//                        .foregroundColor(.iconTintColor)
+//                }
+//            }.buttonStyle(PlainButtonStyle())
+            
             Button(action: {
                 isShopListTapped.toggle()
             }) {
                 VStack{
-                    Image(systemName: "list.bullet.rectangle.portrait")
+                    Image("cart")
                         .resizable()
                         .frame(maxWidth:20,maxHeight: 20)
                         .clipped()
+                        .foregroundColor(.iconTintColor)
                 }
             }
             

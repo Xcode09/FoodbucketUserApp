@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		134AAF9927E8C24500694FAD /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 134AAF9827E8C24500694FAD /* AlertToast */; };
+		134AAF9C27E8F92800694FAD /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 134AAF9B27E8F92800694FAD /* Introspect */; };
 		13A15E7227A957F3004B0C12 /* ShopsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A15E7127A957F3004B0C12 /* ShopsList.swift */; };
 		13AA49D827E4CAE900DA7878 /* MultipartForm in Frameworks */ = {isa = PBXBuildFile; productRef = 13AA49D727E4CAE900DA7878 /* MultipartForm */; };
 		13AF2D3827E7955400D62D28 /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AF2D3727E7955400D62D28 /* ViewModels.swift */; };
@@ -62,6 +64,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				13FAFD4427E5F7FA009A2C9F /* Alamofire in Frameworks */,
+				134AAF9927E8C24500694FAD /* AlertToast in Frameworks */,
+				134AAF9C27E8F92800694FAD /* Introspect in Frameworks */,
 				13B680EB27E3AE4200D89830 /* Kingfisher in Frameworks */,
 				13AA49D827E4CAE900DA7878 /* MultipartForm in Frameworks */,
 			);
@@ -237,6 +241,8 @@
 				13B680EA27E3AE4200D89830 /* Kingfisher */,
 				13AA49D727E4CAE900DA7878 /* MultipartForm */,
 				13FAFD4327E5F7FA009A2C9F /* Alamofire */,
+				134AAF9827E8C24500694FAD /* AlertToast */,
+				134AAF9B27E8F92800694FAD /* Introspect */,
 			);
 			productName = FoodPlaniOS;
 			productReference = 13C1C02B27663CD20032E6AB /* FoodPlaniOS.app */;
@@ -271,6 +277,8 @@
 				13B680E927E3AE4200D89830 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				13AA49D627E4CAE900DA7878 /* XCRemoteSwiftPackageReference "MultipartForm" */,
 				13FAFD4227E5F7FA009A2C9F /* XCRemoteSwiftPackageReference "Alamofire" */,
+				134AAF9727E8C24500694FAD /* XCRemoteSwiftPackageReference "AlertToast" */,
+				134AAF9A27E8F92800694FAD /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 13C1C02C27663CD20032E6AB /* Products */;
 			projectDirPath = "";
@@ -459,7 +467,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FoodPlaniOS/Preview Content\"";
-				DEVELOPMENT_TEAM = H874Q37WU8;
+				DEVELOPMENT_TEAM = CQ5AV8SV7S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App wants to access library";
@@ -490,7 +498,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FoodPlaniOS/Preview Content\"";
-				DEVELOPMENT_TEAM = H874Q37WU8;
+				DEVELOPMENT_TEAM = CQ5AV8SV7S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App wants to access library";
@@ -537,6 +545,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		134AAF9727E8C24500694FAD /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		134AAF9A27E8F92800694FAD /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
 		13AA49D627E4CAE900DA7878 /* XCRemoteSwiftPackageReference "MultipartForm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/davbeck/MultipartForm.git";
@@ -564,6 +588,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		134AAF9827E8C24500694FAD /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 134AAF9727E8C24500694FAD /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
+		134AAF9B27E8F92800694FAD /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 134AAF9A27E8F92800694FAD /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
 		13AA49D727E4CAE900DA7878 /* MultipartForm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 13AA49D627E4CAE900DA7878 /* XCRemoteSwiftPackageReference "MultipartForm" */;

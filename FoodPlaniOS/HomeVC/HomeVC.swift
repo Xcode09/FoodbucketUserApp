@@ -9,6 +9,7 @@ import SwiftUI
 import Combine
 import Kingfisher
 import Alamofire
+import Introspect
 class HomeVCViewModel:ObservableObject{
     @Published var receips:[Recipes] = []
     @Published var errorMessage = ""
@@ -19,6 +20,7 @@ class HomeVCViewModel:ObservableObject{
         let pu : AnyPublisher<DataResponse<RecipesModel, NetworkError>, Never> =  Service.shared.fetchData(url: url, method: "GET", isHeaderToke: true)
         cancellationToken = pu.sink { (dataResponse) in
             if dataResponse.error != nil{
+            
                 self.errorMessage = dataResponse.error?.initialError ?? ""
             }else{
                 if let data = dataResponse.value?.data{
@@ -33,33 +35,39 @@ class HomeVCViewModel:ObservableObject{
 struct HomeVC: View {
     @State private var isNavigate = false
     @ObservedObject var vm = HomeVCViewModel()
+    @EnvironmentObject var userState: UserStateViewModel
     init(){
         vm.getRecipes(ApiEndPoints.fetchAllRecipes)
     }
     var body: some View {
         if vm.receips.count > 0{
-            NavigationView{
-                ScrollView{
-                    ZStack{
-                        VStack(alignment: .leading){
-                            horizontalStoires
-                            headerView
-                            cellListView
-                            Spacer()
-                        }
+            ScrollView{
+                ZStack{
+                    VStack(alignment: .leading){
+                        horizontalStoires
+                        headerView
+                        cellListView
+                        Spacer()
                     }
                 }
-                
-                .navigationBarTitle("Menu")
-                .toolbar {
-                    HStack{
-                        Button(action: {}) {
-                            Image("icon_search").resizable().aspectRatio(contentMode: .fit)
-                        }
+            }
+            
+            .navigationBarTitle("Menu")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationViewStyle(.stack)
+            .toolbar {
+                HStack{
+                    Button(action: {}) {
+                        Image("icon_search").resizable().aspectRatio(contentMode: .fit)
                     }
                 }
-                .sheet(isPresented: $isNavigate, onDismiss: nil) {
-                    DetailVC(id: vm.rec_id)
+            }
+            .fullScreenCover(isPresented: $isNavigate, onDismiss: nil) {
+                DetailVC(id: vm.rec_id)
+            }
+            .onChange(of: vm.errorMessage) { _ in
+                if vm.errorMessage == StringKeys.authError{
+                    userState.authOut()
                 }
             }
         }
@@ -69,7 +77,11 @@ struct HomeVC: View {
         
     }
     
-    
+    private func link<Destination: View>(destination: Destination) -> some View {
+            NavigationLink(destination: destination) {
+                destination
+            }
+        }
     private var horizontalStoires:some View{
         ScrollView(.horizontal) {
             LazyHStack {
@@ -90,52 +102,53 @@ struct HomeVC: View {
     }
     
     private var cellListView:some View{
-        ScrollView{
-            LazyVStack(spacing:-10){
-                ForEach(vm.receips, id: \.id) { rec in
-                    ZStack{
-                        HStack{
-                            KFImage.url(URL(string:rec.imageURL ?? ""))
-                                .resizable()
-                                .frame(width: 120)
-                                .cornerRadius(10)
-                                .padding()
-                            
-                            Spacer().frame(width:2)
-                            VStack(alignment: .leading, spacing: 8){
-                                LabelTextView(text: rec.name ?? "", forColor:.textColor, fontWeight: .bold, size: 18)
-                                LabelTextView(text: rec.servings ?? "", forColor: .secondaryTextColor, fontWeight: .regular, size: 16)
-                                HStack(spacing:8){
-                                    HStack{
-                                        Image(systemName: ImagesName.clock.rawValue)
-                                        Text(rec.cookingTime ?? "")
-                                    }
-                                    HStack{
-                                        Image(systemName: ImagesName.user.rawValue)
-                                        Text(rec.servings ?? "")
-                                    }
+        LazyVStack(spacing:-10){
+            ForEach(vm.receips, id: \.id) { rec in
+                ZStack{
+                    HStack{
+                        KFImage.url(URL(string:rec.imageURL ?? ""))
+                            .resizable()
+                            .diskCacheExpiration(.never)
+                            .cacheMemoryOnly(false)
+                            .frame(width: 120)
+                            .cornerRadius(10)
+                            .padding()
+                        
+                        Spacer().frame(width:2)
+                        VStack(alignment: .leading, spacing: 8){
+                            LabelTextView(text: rec.name ?? "", forColor:.textColor, fontWeight: .bold, size: 18)
+                            LabelTextView(text: rec.servings ?? "", forColor: .secondaryTextColor, fontWeight: .regular, size: 16)
+                            HStack(spacing:8){
+                                HStack{
+                                    Image(systemName: ImagesName.clock.rawValue)
+                                    Text(rec.cookingTime ?? "")
                                 }
-                                //Spacer()
+                                HStack{
+                                    Image(systemName: ImagesName.user.rawValue)
+                                    Text(rec.servings ?? "")
+                                }
                             }
-                            Spacer()
-                            Button(action: {}) {
-                                VStack{
-                                    Text("...").font(.system(size: 20, weight: .bold, design: .default))
-                                }
-                            }.padding([.trailing], 8)
                             //Spacer()
                         }
-                    }.frame(height:140)
-                        .onTapGesture {
-                            vm.rec_id = "\(rec.id ?? 0)"
-                            self.isNavigate.toggle()
-                        }
+                        Spacer()
+                        Button(action: {}) {
+                            VStack{
+                                Text("...").font(.system(size: 20, weight: .bold, design: .default))
+                            }
+                        }.padding([.trailing], 8)
+                        //Spacer()
+                    }
+                }.frame(height:140)
+                
+                    .onTapGesture {
+                        vm.rec_id = "\(rec.id ?? 0)"
+                        isNavigate.toggle()
+                    }
                     
-                }
             }
             
-            
         }
+        
     }
     
     

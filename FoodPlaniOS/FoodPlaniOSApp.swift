@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct FoodPlaniOSApp: App {
     @StateObject var userStateViewModel = UserStateViewModel()
+    
     var body: some Scene {
         WindowGroup {
             //ShopsList()

@@ -13,6 +13,7 @@ class UserStateViewModel: ObservableObject {
 
     @Published var isLoggedIn = false
     @Published var isBusy = false
+    @State var showToast = false
     var currentUser : User? = nil
     func getUserData(key:String){
         if let user : LoginDataModel = UserDefaults.standard.get(key){
@@ -36,6 +37,12 @@ class UserStateViewModel: ObservableObject {
             isBusy = false
             return .failure(NetworkError.init(initialError: "Something went worng"))
         }
+    }
+    func authOut(){
+        isBusy = true
+        UserDefaults.standard.remove(StringKeys.saveUserKey)
+        isLoggedIn = false
+        isBusy = false
     }
 }
 
