@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		134AAF9927E8C24500694FAD /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 134AAF9827E8C24500694FAD /* AlertToast */; };
 		134AAF9C27E8F92800694FAD /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 134AAF9B27E8F92800694FAD /* Introspect */; };
+		1350259B27F8732E0099797B /* RecipesCheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350259A27F8732E0099797B /* RecipesCheckList.swift */; };
 		13A15E7227A957F3004B0C12 /* ShopsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A15E7127A957F3004B0C12 /* ShopsList.swift */; };
 		13AA49D827E4CAE900DA7878 /* MultipartForm in Frameworks */ = {isa = PBXBuildFile; productRef = 13AA49D727E4CAE900DA7878 /* MultipartForm */; };
 		13AF2D3827E7955400D62D28 /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AF2D3727E7955400D62D28 /* ViewModels.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1350259A27F8732E0099797B /* RecipesCheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesCheckList.swift; sourceTree = "<group>"; };
 		13A15E7127A957F3004B0C12 /* ShopsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsList.swift; sourceTree = "<group>"; };
 		13AF2D3727E7955400D62D28 /* ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
 		13B680DE27E3917B00D89830 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -74,6 +76,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		130C347E27F74E7300654D6E /* RecipesCheckList */ = {
+			isa = PBXGroup;
+			children = (
+				1350259A27F8732E0099797B /* RecipesCheckList.swift */,
+			);
+			path = RecipesCheckList;
+			sourceTree = "<group>";
+		};
 		13A15E7027A957D6004B0C12 /* ShopsList */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,6 +199,7 @@
 		13DFDCF9276A3F2E00570519 /* DetailVC */ = {
 			isa = PBXGroup;
 			children = (
+				130C347E27F74E7300654D6E /* RecipesCheckList */,
 				13A15E7027A957D6004B0C12 /* ShopsList */,
 				13DFDCFA276A3F4500570519 /* DetailVC.swift */,
 			);
@@ -307,6 +318,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1350259B27F8732E0099797B /* RecipesCheckList.swift in Sources */,
 				13FA723D2768BDF000A4BCDE /* ProfileView.swift in Sources */,
 				13B680E227E395FD00D89830 /* Models.swift in Sources */,
 				13C1C03E27663D0C0032E6AB /* HomeVC.swift in Sources */,
@@ -470,12 +482,14 @@
 				DEVELOPMENT_TEAM = CQ5AV8SV7S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app wants to access your camera";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App wants to access library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -501,12 +515,14 @@
 				DEVELOPMENT_TEAM = CQ5AV8SV7S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app wants to access your camera";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App wants to access library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

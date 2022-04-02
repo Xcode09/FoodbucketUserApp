@@ -13,6 +13,7 @@ struct FoodPlaniOSApp: App {
     
     var body: some Scene {
         WindowGroup {
+            //RecipesCheckList()
             //ShopsList()
             ContentView().environmentObject(userStateViewModel)
             

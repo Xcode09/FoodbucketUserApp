@@ -110,8 +110,9 @@ struct DetailVC: View {
                         }
                     }
                 })
-                .edgesIgnoringSafeArea(.all)
-                .fullScreenCover(isPresented: $isShopListTapped, onDismiss: nil) {
+//                .edgesIgnoringSafeArea(.all)
+                .fullScreenCover(isPresented: $isShopListTapped, onDismiss: nil)
+                {
                     ShopsList()
                 }
                 .toast(isPresenting: $showToast) {

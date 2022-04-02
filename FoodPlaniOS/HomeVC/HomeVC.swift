@@ -34,6 +34,9 @@ class HomeVCViewModel:ObservableObject{
 
 struct HomeVC: View {
     @State private var isNavigate = false
+    @State private var isQrCodeTapped = false
+    @State private var isReceipesList = false
+    @State private var scannedRecipeId:String? = ""
     @ObservedObject var vm = HomeVCViewModel()
     @EnvironmentObject var userState: UserStateViewModel
     init(){
@@ -41,35 +44,61 @@ struct HomeVC: View {
     }
     var body: some View {
         if vm.receips.count > 0{
-            ScrollView{
-                ZStack{
-                    VStack(alignment: .leading){
-                        horizontalStoires
-                        headerView
-                        cellListView
-                        Spacer()
+            NavigationView{
+                ScrollView{
+                    ZStack{
+                        VStack(alignment: .leading){
+                            horizontalStoires
+                            headerView
+                            cellListView
+                            Spacer()
+                        }
                     }
                 }
-            }
+                .navigationBarTitle("Menu")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        Button(action: {
+                        }) {
+                            Image(systemName: "magnifyingglass")
+                                .resizable()
+                        }
+                        Button(action: {
+                            isQrCodeTapped.toggle()
+                        }) {
+                            Image(systemName: "qrcode.viewfinder")
+                                .resizable()
+                        }
+                    }
+                }
+                .fullScreenCover(isPresented: $isNavigate, onDismiss: nil) {
+                    DetailVC(id: vm.rec_id)
+                }
+                .fullScreenCover(isPresented: $isQrCodeTapped, onDismiss: nil, content: {
+                    ScannerView(isPresented: $isQrCodeTapped, text: .constant(nil), recipe: $scannedRecipeId)
+                })
+
+                .onChange(of: vm.errorMessage) { _ in
+                    if vm.errorMessage == StringKeys.authError{
+                        userState.authOut()
+                    }
+                }
+                .onChange(of: scannedRecipeId!) { newValue in
+                    debugPrint(newValue)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        self.isReceipesList.toggle()
+                    }
+                }
+                
+            }.fullScreenCover(isPresented: $isReceipesList, onDismiss: nil, content: {
+                RecipesCheckList(rec_id: scannedRecipeId ?? "")
+
+            })
+                            
             
-            .navigationBarTitle("Menu")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationViewStyle(.stack)
-            .toolbar {
-                HStack{
-                    Button(action: {}) {
-                        Image("icon_search").resizable().aspectRatio(contentMode: .fit)
-                    }
-                }
-            }
-            .fullScreenCover(isPresented: $isNavigate, onDismiss: nil) {
-                DetailVC(id: vm.rec_id)
-            }
-            .onChange(of: vm.errorMessage) { _ in
-                if vm.errorMessage == StringKeys.authError{
-                    userState.authOut()
-                }
-            }
+            
+            
         }
         else{
             Text(vm.errorMessage)

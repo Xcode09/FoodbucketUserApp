@@ -17,26 +17,20 @@ struct ContentView: View {
     var body: some View {
         ZStack{
            if vm.isLoggedIn{
-               NavigationView{
-                   TabView{
-                       HomeVC().tabItem {
-                           Label("Menu", systemImage: ImagesName.house_fill.rawValue)
-                       }
-                       CheckViewVC().tabItem {
-                           Label("Check", systemImage: "list.dash")
-                       }
-       //                ScannerView().tabItem {
-       //                    Label("QR Scan", systemImage: "list.dash")
-       //                }
-                       FavouriteVC().tabItem {
-                           Label("Favourite", systemImage: ImagesName.heart.rawValue)
-                       }
-                       ProfileView().tabItem {
-                           Label("Profile", systemImage: ImagesName.user.rawValue)
-                       }
-                   }.accentColor(.iconTintColor)
-                       .navigationViewStyle(.stack)
-               }
+               TabView{
+                   HomeVC().tabItem {
+                       Label("Menu", systemImage: ImagesName.house_fill.rawValue)
+                   }
+                   CheckViewVC().tabItem {
+                       Label("Check", systemImage: "list.dash")
+                   }
+                   FavouriteVC().tabItem {
+                       Label("Favourite", systemImage: ImagesName.heart.rawValue)
+                   }
+                   ProfileView().tabItem {
+                       Label("Profile", systemImage: ImagesName.user.rawValue)
+                   }
+               }.accentColor(.iconTintColor)
                 
             }
             else{
