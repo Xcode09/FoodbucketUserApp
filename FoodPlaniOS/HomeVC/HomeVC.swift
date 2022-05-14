@@ -9,10 +9,10 @@ import SwiftUI
 import Combine
 import Kingfisher
 import Alamofire
-import Introspect
-class HomeVCViewModel:ObservableObject{
+final class HomeVCViewModel:ObservableObject{
     @Published var receips:[Recipes] = []
     @Published var errorMessage = ""
+    @Published var isLoading = false
     var rec_id = ""
     var cancellationToken: AnyCancellable?
     
@@ -30,13 +30,33 @@ class HomeVCViewModel:ObservableObject{
             }
         }
     }
+    func getCategoriesRecipes(_ url:String,category:String){
+        isLoading = true
+        let pu : AnyPublisher<DataResponse<RecipesModel, NetworkError>, Never> =  Service.shared.fetchData(url: url, method: "POST",isHeaderToke: true, parameters: ["category":category])
+        cancellationToken = pu.sink { (dataResponse) in
+            self.isLoading = false
+            if dataResponse.error != nil{
+                //self.errorMessage = dataResponse.error?.initialError ?? ""
+            }else{
+                if let data = dataResponse.value?.data{
+                    guard data.count > 0 else {
+                        return
+                    }
+                    self.receips =  data
+                }
+                
+            }
+        }
+    }
 }
 
 struct HomeVC: View {
     @State private var isNavigate = false
     @State private var isQrCodeTapped = false
     @State private var isReceipesList = false
+    @State private var isSearchClick = false
     @State private var scannedRecipeId:String? = ""
+    private var categories = ["lunch","dinner","breakfast"]
     @ObservedObject var vm = HomeVCViewModel()
     @EnvironmentObject var userState: UserStateViewModel
     init(){
@@ -50,7 +70,18 @@ struct HomeVC: View {
                         VStack(alignment: .leading){
                             horizontalStoires
                             headerView
-                            cellListView
+                            if vm.isLoading{
+                                Spacer()
+                                HStack{
+                                    Spacer()
+                                    ProgressView().progressViewStyle(CircularProgressViewStyle())
+                                    Spacer()
+                                }.padding()
+                                Spacer()
+                            }else{
+                                cellListView
+                            }
+                            
                             Spacer()
                         }
                     }
@@ -60,6 +91,7 @@ struct HomeVC: View {
                 .toolbar {
                     ToolbarItemGroup(placement: .navigationBarTrailing) {
                         Button(action: {
+                            isSearchClick.toggle()
                         }) {
                             Image(systemName: "magnifyingglass")
                                 .resizable()
@@ -78,7 +110,9 @@ struct HomeVC: View {
                 .fullScreenCover(isPresented: $isQrCodeTapped, onDismiss: nil, content: {
                     ScannerView(isPresented: $isQrCodeTapped, text: .constant(nil), recipe: $scannedRecipeId)
                 })
-
+                .fullScreenCover(isPresented: $isSearchClick, content: {
+                    SearchView()
+                })
                 .onChange(of: vm.errorMessage) { _ in
                     if vm.errorMessage == StringKeys.authError{
                         userState.authOut()
@@ -114,15 +148,19 @@ struct HomeVC: View {
     private var horizontalStoires:some View{
         ScrollView(.horizontal) {
             LazyHStack {
-                ForEach(0...2, id: \.self) { index in
+                ForEach(categories, id: \.self) { index in
                     ZStack(alignment:.bottom){
                         Image("A")
                             .resizable()
-                            .overlay(ImageOverlay(message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry",font: .callout,lineL: 2), alignment: .bottomLeading)
+                            .overlay(ImageOverlay(message:index,font: .callout,lineL: 2), alignment: .bottomLeading)
                             .frame(width: 120, height: 120)
                     }.cornerRadius(10)
+                        .onTapGesture {
+                            vm.getCategoriesRecipes(ApiEndPoints.searchRecipes, category: index)
+                        }
                 }
             }.padding()
+            
                 
         }
         .frame(height:130)
@@ -160,11 +198,11 @@ struct HomeVC: View {
                             //Spacer()
                         }
                         Spacer()
-                        Button(action: {}) {
-                            VStack{
-                                Text("...").font(.system(size: 20, weight: .bold, design: .default))
-                            }
-                        }.padding([.trailing], 8)
+//                        Button(action: {}) {
+//                            VStack{
+//                                Text("...").font(.system(size: 20, weight: .bold, design: .default))
+//                            }
+//                        }.padding([.trailing], 8)
                         //Spacer()
                     }
                 }.frame(height:140)
@@ -183,11 +221,11 @@ struct HomeVC: View {
     
     private var headerView:some View{
         HStack{
-            LabelTextView(text: "Bockpecehbe 12.12", forColor: .textColor, fontWeight: .bold, size: 18)
-            Text("CeronuE").padding(5).background(RoundedRectangle(cornerRadius: 8).fill(.gray.opacity(0.3)))
-            Spacer()
-            Image(systemName: "text.book.closed").resizable()
-                .frame(width:25,height: 25)
+            LabelTextView(text: "Недавний", forColor: .textColor, fontWeight: .bold, size: 18)
+//            Text("CeronuE").padding(5).background(RoundedRectangle(cornerRadius: 8).fill(.gray.opacity(0.3)))
+//            Spacer()
+//            Image(systemName: "text.book.closed").resizable()
+//                .frame(width:25,height: 25)
         }.padding([.leading,.trailing], 8)
         
     }

@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		134AAF9927E8C24500694FAD /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 134AAF9827E8C24500694FAD /* AlertToast */; };
-		134AAF9C27E8F92800694FAD /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 134AAF9B27E8F92800694FAD /* Introspect */; };
 		1350259B27F8732E0099797B /* RecipesCheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350259A27F8732E0099797B /* RecipesCheckList.swift */; };
+		13926C9C281AB1CE003CC7EA /* SwiftLocation in Frameworks */ = {isa = PBXBuildFile; productRef = 13926C9B281AB1CE003CC7EA /* SwiftLocation */; };
+		13926C9E281AB6D0003CC7EA /* ShopListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13926C9D281AB6D0003CC7EA /* ShopListModel.swift */; };
+		13926CA0281AC3CA003CC7EA /* CheckOutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13926C9F281AC3CA003CC7EA /* CheckOutModel.swift */; };
 		13A15E7227A957F3004B0C12 /* ShopsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A15E7127A957F3004B0C12 /* ShopsList.swift */; };
-		13AA49D827E4CAE900DA7878 /* MultipartForm in Frameworks */ = {isa = PBXBuildFile; productRef = 13AA49D727E4CAE900DA7878 /* MultipartForm */; };
+		13A65F13282BD5EF00B5A5D8 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A65F12282BD5EF00B5A5D8 /* SearchView.swift */; };
+		13A9B4F32825721C00663CB1 /* MyDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A9B4F22825721C00663CB1 /* MyDetailsView.swift */; };
 		13AF2D3827E7955400D62D28 /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AF2D3727E7955400D62D28 /* ViewModels.swift */; };
 		13B680DF27E3917B00D89830 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B680DE27E3917B00D89830 /* Service.swift */; };
 		13B680E227E395FD00D89830 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B680E127E395FD00D89830 /* Models.swift */; };
@@ -33,11 +36,16 @@
 		13FAFD4427E5F7FA009A2C9F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 13FAFD4327E5F7FA009A2C9F /* Alamofire */; };
 		13FAFD4727E619D3009A2C9F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FAFD4627E619D3009A2C9F /* LoginView.swift */; };
 		13FAFD4927E62172009A2C9F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FAFD4827E62172009A2C9F /* SignUpView.swift */; };
+		13FF5050281EB6960008E771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FF504F281EB6960008E771 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1350259A27F8732E0099797B /* RecipesCheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesCheckList.swift; sourceTree = "<group>"; };
+		13926C9D281AB6D0003CC7EA /* ShopListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListModel.swift; sourceTree = "<group>"; };
+		13926C9F281AC3CA003CC7EA /* CheckOutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutModel.swift; sourceTree = "<group>"; };
 		13A15E7127A957F3004B0C12 /* ShopsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsList.swift; sourceTree = "<group>"; };
+		13A65F12282BD5EF00B5A5D8 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		13A9B4F22825721C00663CB1 /* MyDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDetailsView.swift; sourceTree = "<group>"; };
 		13AF2D3727E7955400D62D28 /* ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
 		13B680DE27E3917B00D89830 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		13B680E127E395FD00D89830 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -58,6 +66,7 @@
 		13FA723C2768BDF000A4BCDE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		13FAFD4627E619D3009A2C9F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		13FAFD4827E62172009A2C9F /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		13FF504F281EB6960008E771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,10 +75,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				13FAFD4427E5F7FA009A2C9F /* Alamofire in Frameworks */,
+				13926C9C281AB1CE003CC7EA /* SwiftLocation in Frameworks */,
 				134AAF9927E8C24500694FAD /* AlertToast in Frameworks */,
-				134AAF9C27E8F92800694FAD /* Introspect in Frameworks */,
 				13B680EB27E3AE4200D89830 /* Kingfisher in Frameworks */,
-				13AA49D827E4CAE900DA7878 /* MultipartForm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +100,14 @@
 			path = ShopsList;
 			sourceTree = "<group>";
 		};
+		13A9B4F12825720100663CB1 /* SubProfileViews */ = {
+			isa = PBXGroup;
+			children = (
+				13A9B4F22825721C00663CB1 /* MyDetailsView.swift */,
+			);
+			path = SubProfileViews;
+			sourceTree = "<group>";
+		};
 		13AF2D3627E7953800D62D28 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,7 +127,9 @@
 		13B680E027E395F200D89830 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				13926C9F281AC3CA003CC7EA /* CheckOutModel.swift */,
 				13B680E127E395FD00D89830 /* Models.swift */,
+				13926C9D281AB6D0003CC7EA /* ShopListModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -144,6 +162,7 @@
 		13C1C02D27663CD20032E6AB /* FoodPlaniOS */ = {
 			isa = PBXGroup;
 			children = (
+				13FF504E281EB6800008E771 /* AppDelegate */,
 				13AF2D3627E7953800D62D28 /* ViewModels */,
 				13FAFD4527E619BC009A2C9F /* AuthenticationViews */,
 				13B680E327E39E6200D89830 /* Contants */,
@@ -176,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				13C1C03D27663D0B0032E6AB /* HomeVC.swift */,
+				13A65F12282BD5EF00B5A5D8 /* SearchView.swift */,
 			);
 			path = HomeVC;
 			sourceTree = "<group>";
@@ -218,6 +238,7 @@
 		13FA723B2768BDB200A4BCDE /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
+				13A9B4F12825720100663CB1 /* SubProfileViews */,
 				13FA723C2768BDF000A4BCDE /* ProfileView.swift */,
 			);
 			path = ProfileView;
@@ -230,6 +251,14 @@
 				13FAFD4827E62172009A2C9F /* SignUpView.swift */,
 			);
 			path = AuthenticationViews;
+			sourceTree = "<group>";
+		};
+		13FF504E281EB6800008E771 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				13FF504F281EB6960008E771 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,10 +279,9 @@
 			name = FoodPlaniOS;
 			packageProductDependencies = (
 				13B680EA27E3AE4200D89830 /* Kingfisher */,
-				13AA49D727E4CAE900DA7878 /* MultipartForm */,
 				13FAFD4327E5F7FA009A2C9F /* Alamofire */,
 				134AAF9827E8C24500694FAD /* AlertToast */,
-				134AAF9B27E8F92800694FAD /* Introspect */,
+				13926C9B281AB1CE003CC7EA /* SwiftLocation */,
 			);
 			productName = FoodPlaniOS;
 			productReference = 13C1C02B27663CD20032E6AB /* FoodPlaniOS.app */;
@@ -286,10 +314,9 @@
 			mainGroup = 13C1C02227663CD20032E6AB;
 			packageReferences = (
 				13B680E927E3AE4200D89830 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				13AA49D627E4CAE900DA7878 /* XCRemoteSwiftPackageReference "MultipartForm" */,
 				13FAFD4227E5F7FA009A2C9F /* XCRemoteSwiftPackageReference "Alamofire" */,
 				134AAF9727E8C24500694FAD /* XCRemoteSwiftPackageReference "AlertToast" */,
-				134AAF9A27E8F92800694FAD /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				13926C9A281AB1CE003CC7EA /* XCRemoteSwiftPackageReference "SwiftLocation" */,
 			);
 			productRefGroup = 13C1C02C27663CD20032E6AB /* Products */;
 			projectDirPath = "";
@@ -321,21 +348,26 @@
 				1350259B27F8732E0099797B /* RecipesCheckList.swift in Sources */,
 				13FA723D2768BDF000A4BCDE /* ProfileView.swift in Sources */,
 				13B680E227E395FD00D89830 /* Models.swift in Sources */,
+				13A9B4F32825721C00663CB1 /* MyDetailsView.swift in Sources */,
 				13C1C03E27663D0C0032E6AB /* HomeVC.swift in Sources */,
 				13FAFD4727E619D3009A2C9F /* LoginView.swift in Sources */,
+				13926CA0281AC3CA003CC7EA /* CheckOutModel.swift in Sources */,
 				13B680E527E39E6F00D89830 /* Contants.swift in Sources */,
 				13C1C04427664ECE0032E6AB /* FavouriteVC.swift in Sources */,
 				13C1C03127663CD20032E6AB /* ContentView.swift in Sources */,
 				13FA72382768BBE200A4BCDE /* CodeScanner.swift in Sources */,
 				13B680DF27E3917B00D89830 /* Service.swift in Sources */,
 				13A15E7227A957F3004B0C12 /* ShopsList.swift in Sources */,
+				13A65F13282BD5EF00B5A5D8 /* SearchView.swift in Sources */,
 				13AF2D3827E7955400D62D28 /* ViewModels.swift in Sources */,
 				13C0CA7D2772167400B254C7 /* Extensions.swift in Sources */,
 				13DFDCFB276A3F4500570519 /* DetailVC.swift in Sources */,
 				13FAFD4927E62172009A2C9F /* SignUpView.swift in Sources */,
 				13C1C04127664C270032E6AB /* CheckViewVC.swift in Sources */,
 				13FA723A2768BC5400A4BCDE /* ScannerView.swift in Sources */,
+				13FF5050281EB6960008E771 /* AppDelegate.swift in Sources */,
 				13C1C02F27663CD20032E6AB /* FoodPlaniOSApp.swift in Sources */,
+				13926C9E281AB6D0003CC7EA /* ShopListModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +515,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app wants to access your camera";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "App wants Location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App wants location";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App wants to access library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -516,6 +550,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app wants to access your camera";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "App wants Location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App wants location";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App wants to access library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -569,20 +605,12 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		134AAF9A27E8F92800694FAD /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+		13926C9A281AB1CE003CC7EA /* XCRemoteSwiftPackageReference "SwiftLocation" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			repositoryURL = "https://github.com/malcommac/SwiftLocation.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.4;
-			};
-		};
-		13AA49D627E4CAE900DA7878 /* XCRemoteSwiftPackageReference "MultipartForm" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/davbeck/MultipartForm.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
+				minimumVersion = 5.0.0;
 			};
 		};
 		13B680E927E3AE4200D89830 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
@@ -609,15 +637,10 @@
 			package = 134AAF9727E8C24500694FAD /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
 		};
-		134AAF9B27E8F92800694FAD /* Introspect */ = {
+		13926C9B281AB1CE003CC7EA /* SwiftLocation */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 134AAF9A27E8F92800694FAD /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
-		};
-		13AA49D727E4CAE900DA7878 /* MultipartForm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 13AA49D627E4CAE900DA7878 /* XCRemoteSwiftPackageReference "MultipartForm" */;
-			productName = MultipartForm;
+			package = 13926C9A281AB1CE003CC7EA /* XCRemoteSwiftPackageReference "SwiftLocation" */;
+			productName = SwiftLocation;
 		};
 		13B680EA27E3AE4200D89830 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

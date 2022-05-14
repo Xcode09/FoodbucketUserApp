@@ -8,12 +8,14 @@
 import Foundation
 import SwiftUI
 import Combine
+import CoreLocation
 @MainActor
 class UserStateViewModel: ObservableObject {
 
     @Published var isLoggedIn = false
     @Published var isBusy = false
     @State var showToast = false
+    var userLocation = CLLocationCoordinate2D.init()
     var currentUser : User? = nil
     func getUserData(key:String){
         if let user : LoginDataModel = UserDefaults.standard.get(key){

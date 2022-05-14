@@ -14,7 +14,7 @@ struct BasicModel:Codable{
 struct LoginDataModel: Codable {
     let user: User?
     let accessToken: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case user
         case accessToken = "access_token"
@@ -27,7 +27,7 @@ struct User: Codable {
     let name, imageURL, roleID, address: String?
     let latitude, longitude: String?
     let email, createdAt, updatedAt: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id, name
         case imageURL = "imageUrl"
@@ -53,9 +53,13 @@ struct Recipes: Codable,Identifiable{
     let videoURL: String?
     let videoDescription: String?
     let createdAt, updatedAt: String?
+    let proteins:String?
+    let calories:String?
+    let fats:String?
+    let carbohydrates:String?
     let stepRecipe: [StepRecipe]?
     let ingredients: [Ingredient]?
-
+    
     enum CodingKeys: String, CodingKey {
         case id, name, category, servings
         case cookingTime = "cooking_time"
@@ -67,6 +71,7 @@ struct Recipes: Codable,Identifiable{
         case updatedAt = "updated_at"
         case stepRecipe = "step_recipe"
         case ingredients
+        case proteins,fats,calories,carbohydrates
     }
 }
 struct Ingredient: Codable,Identifiable{
@@ -74,7 +79,7 @@ struct Ingredient: Codable,Identifiable{
     let recipeID, ingredientID, quantity, createdAt: String?
     let updatedAt: String?
     let ingredientName: [IngredientName]?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case recipeID = "recipe_id"
@@ -86,30 +91,35 @@ struct Ingredient: Codable,Identifiable{
     }
 }
 struct IngredientName: Codable,Identifiable{
-        let id: Int?
-        let shopID, name, totalQuantity, unit: String?
-        let brandName: String?
-        let imageURL: String?
-        let createdAt, updatedAt: String?
-
-        enum CodingKeys: String, CodingKey {
-            case id
-            case shopID = "shop_id"
-            case name
-            case totalQuantity = "total_quantity"
-            case unit
-            case brandName = "brand_name"
-            case imageURL = "imageUrl"
-            case createdAt = "created_at"
-            case updatedAt = "updated_at"
-        }
+    let id: Int?
+    let ingreID:String?
+    let shopID, name, totalQuantity, unit: String?
+    let brandName: String?
+    let imageURL: String?
+    let createdAt, updatedAt: String?
+    let amount:String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case shopID = "shop_id"
+        case name
+        case totalQuantity = "total_quantity"
+        case unit
+        case brandName = "brand_name"
+        case imageURL = "imageUrl"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case ingreID = "ingre_id"
+        case amount
+        
+    }
 }
 
 struct StepRecipe: Codable,Identifiable{
     let id: Int?
     let recipeID, noOfStep, title, imageURL: String?
     let stepRecipeDescription, createdAt, updatedAt: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case recipeID = "recipe_id"
@@ -134,7 +144,7 @@ struct FavouriteReceipeModel: Codable {
     let id: Int?
     let recipeID, userID, createdAt, updatedAt: String?
     let recipe: Recipe?
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case recipeID = "recipe_id"
@@ -154,7 +164,7 @@ struct Recipe: Codable,Identifiable{
     let createdAt, updatedAt: String?
     let stepRecipe: [StepRecipe]?
     let ingredients: [Ingredient]?
-
+    
     enum CodingKeys: String, CodingKey {
         case id, name, category, servings
         case cookingTime = "cooking_time"

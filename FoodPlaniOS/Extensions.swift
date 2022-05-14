@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftUI
+import CoreLocation
+var golbalLocation : CLLocationCoordinate2D?
 extension View {
     /// Navigate to a new view.
     /// - Parameters:
@@ -52,6 +54,10 @@ extension Color{
 extension String{
     func parseToInt() -> Int? {
         return Int(self.components(separatedBy: CharacterSet.decimalDigits.inverted).joined())
+    }
+    func getDistance()->String{
+        let v = round(Double(self) ?? 0.0)
+        return "\(v)"
     }
 }
 extension UserDefaults{

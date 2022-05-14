@@ -8,13 +8,14 @@
 import SwiftUI
 import Combine
 import Alamofire
+import AlertToast
 fileprivate class SignUpViewModel:ObservableObject{
     
     @Published var canSubmit = false
     
     @Published var errorMessage = ""
     var cancellationToken: AnyCancellable?
-    @Environment(\.presentationMode) var presentationMode
+   
     func signUpTapped(_ url:String,para:[String:String],image:UIImage)
     {
         self.canSubmit = true
@@ -28,7 +29,6 @@ fileprivate class SignUpViewModel:ObservableObject{
                 if let _ = dataResponse.value{
                     self.errorMessage = dataResponse.value?.message ?? ""
                     self.canSubmit = false
-                    self.presentationMode.wrappedValue.dismiss()
                 }
                 
             }
@@ -37,20 +37,22 @@ fileprivate class SignUpViewModel:ObservableObject{
 }
 struct SignUpView: View {
     @ObservedObject fileprivate var vm = SignUpViewModel()
+    @Environment(\.presentationMode) var presentationMode
+    @State var showToast = false
     @State var image: UIImage? = nil
     @State var isImageTapped = false
     @State var email = ""
     @State var password = ""
     @State var userName = ""
-   
+    @State var localErrors = ""
     var body: some View {
         VStack(spacing:20){
-            Text("Welcome,")
+            Text("Добро пожаловать,")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(.black)
                 .font(.system(size: 25, weight: .regular, design: .default))
             
-            Text("Sign up to continune")
+            Text("Зарегистрируйтесь, чтобы продолжить")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(.black)
                 .font(.system(size: 18, weight: .regular, design: .default))
@@ -64,16 +66,16 @@ struct SignUpView: View {
                     isImageTapped.toggle()
                 }
             
-            SignUpRow(title: "Username", placeholder: "Enter Your Username", imageIcon: "person", isSecure: false, iconTint: .green, text: $userName)
-            SignUpRow(title: "Email", placeholder: "Enter Your Email", imageIcon: "envelope", isSecure: false, iconTint: .green, text: $email)
-            SignUpRow(title: "Password", placeholder: "Enter Your Password", imageIcon: "lock", isSecure: true, iconTint: .green, text: $password)
+            SignUpRow(title: "Имя пользователя", placeholder: "Введите имя пользователя", imageIcon: "person", isSecure: false, iconTint: .green, text: $userName)
+            SignUpRow(title: "Эл. адрес", placeholder: "Введите ваш адрес электронной почты", imageIcon: "envelope", isSecure: false, iconTint: .green, text: $email)
+            SignUpRow(title: "Пароль", placeholder: "Введите ваш пароль", imageIcon: "lock", isSecure: true, iconTint: .green, text: $password)
             if vm.canSubmit{
                 ProgressView().progressViewStyle(CircularProgressViewStyle())
             }else{
                 Button(action: {
                     if email.isEmpty && password.isEmpty && userName.isEmpty
                     {
-                        vm.errorMessage = "Email or password empty"
+                        localErrors = "Электронная почта или пароль пусты"
                         return
                     }else{
                        let para = [
@@ -86,7 +88,7 @@ struct SignUpView: View {
                     }
                 }) {
                     VStack{
-                        Text("Sign up").foregroundColor(.white)
+                        Text("Зарегистрироваться").foregroundColor(.white)
                             .font(.system(size: 18, weight: .medium, design: .default))
                     }.padding()
                         .frame(maxWidth:UIScreen.main.bounds.width - 20,maxHeight: 46)
@@ -97,16 +99,15 @@ struct SignUpView: View {
             }
             
             HStack{
-                Text("Already have an account?")
-                Text("Sign In")
+                Text("У вас уже есть аккаунт?")
+                Text("Войти")
                     .foregroundColor(.green)
             }
             
-            if vm.errorMessage != ""{
-                Text(vm.errorMessage)
+            if localErrors != ""{
+                Text(localErrors)
                     .foregroundColor(.red)
             }
-            
             Spacer()
         }.padding([.all], 10)
             .sheet(isPresented: $isImageTapped, onDismiss: nil) {
@@ -115,16 +116,27 @@ struct SignUpView: View {
                 }
             }
             .onChange(of: email) { newValue in
-                vm.errorMessage = ""
+                localErrors = ""
             }
             .onChange(of: password) { newValue in
-                vm.errorMessage = ""
+                localErrors = ""
             }
             .onChange(of: userName) { newValue in
-                vm.errorMessage = ""
+                localErrors = ""
             }
             .onChange(of: image) { newValue in
-                vm.errorMessage = ""
+                localErrors = ""
+            }
+            .toast(isPresenting: $showToast) {
+                AlertToast(type: .regular, title:vm.errorMessage)
+            }
+            .onChange(of: vm.errorMessage) { newValue in
+                showToast.toggle()
+                if vm.errorMessage == "User register successfully."{
+                    DispatchQueue.main.asyncAfter(deadline: .now()+4, execute: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    })
+                }
             }
     }
     

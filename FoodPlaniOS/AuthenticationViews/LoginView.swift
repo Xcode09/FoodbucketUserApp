@@ -64,20 +64,19 @@ struct LoginView: View {
             userState.isLoggedIn = true
         }
         return VStack(spacing:20){
-            Text("Welcome,")
+            Text("Добро пожаловать,")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(.black)
                 .font(.system(size: 25, weight: .regular, design: .default))
-            Text("Signin to continune")
+            Text("Войдите, чтобы продолжить")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundColor(.black)
                 .font(.system(size: 18, weight: .regular, design: .default))
-                
-            SignUpRow(title:"Email", placeholder: "Enter Your Email", imageIcon: "envelope", isSecure: false, iconTint: .green, text: $email)
-            SignUpRow(title: "Password", placeholder: "Enter Your Password", imageIcon: "lock", isSecure: true, iconTint: .green, text: $password)
+            SignUpRow(title: "Эл. адрес", placeholder: "Введите ваш адрес электронной почты", imageIcon: "envelope", isSecure: false, iconTint: .green, text: $email)
+            SignUpRow(title: "Пароль", placeholder: "Введите ваш пароль", imageIcon: "lock", isSecure: true, iconTint: .green, text: $password)
             
             Button(action: {}) {
-                Text("Forgot Password")
+                Text("Забыли пароль")
                     .foregroundColor(.black)
             }
             if vm.canSubmit{
@@ -85,14 +84,14 @@ struct LoginView: View {
             }else{
                 Button(action: {
                     if email.isEmpty && password.isEmpty{
-                        vm.errorMessage = "Email or password empty"
+                        vm.errorMessage = "Электронная почта или пароль пусты"
                     }else{
                        
                         vm.loginTapped(ApiEndPoints.login,email: email,password: password)
                     }
                 }) {
                     VStack{
-                        Text("Sign in").foregroundColor(.white)
+                        Text("Войти").foregroundColor(.white)
                             .font(.system(size: 18, weight: .medium, design: .default))
                     }.padding()
                         .frame(maxWidth:UIScreen.main.bounds.width - 20,maxHeight: 46)
@@ -103,8 +102,8 @@ struct LoginView: View {
             }
             
             HStack{
-                Text("Don't have an account?")
-                Text("Sign Up")
+                Text("У вас нет аккаунта?")
+                Text("Зарегистрироваться")
                     .foregroundColor(.green)
                     .onTapGesture {
                         self.isSignUp.toggle()
@@ -116,10 +115,9 @@ struct LoginView: View {
             }
             Spacer()
         }.padding([.all], 10)
-            .sheet(isPresented:$isSignUp, onDismiss: nil, content: {
+            .fullScreenCover(isPresented:$isSignUp, onDismiss: nil, content: {
                 SignUpView()
             })
-        
             .onChange(of: email) { newValue in
                 vm.errorMessage = ""
             }

@@ -22,6 +22,9 @@ struct ApiEndPoints{
     
     static let customerFavouriteRecipesView = "\(ApiEndPoints().baseURL)customer/favourite-view"
     static let distance = "\(ApiEndPoints().baseURL)customer/distance"
+    static let checkout = "\(ApiEndPoints().baseURL)customer/checkout"
+    static let placeOrder = "\(ApiEndPoints().baseURL)customer/order_create"
+    static let searchRecipes = "\(ApiEndPoints().baseURL)customer/search_recipes"
 }
 
 struct StringKeys{

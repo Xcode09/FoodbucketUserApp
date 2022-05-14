@@ -7,8 +7,11 @@
 
 import SwiftUI
 import Combine
+import SwiftLocation
 struct ContentView: View {
+    @ObservedObject var appState = AppState.shared
     @State var isLoginTrue = false
+    @State var navigate = false
     @EnvironmentObject var vm: UserStateViewModel
     init(){
         UINavigationBar.appearance().tintColor = .systemGreen
@@ -21,9 +24,9 @@ struct ContentView: View {
                    HomeVC().tabItem {
                        Label("Menu", systemImage: ImagesName.house_fill.rawValue)
                    }
-                   CheckViewVC().tabItem {
-                       Label("Check", systemImage: "list.dash")
-                   }
+//                   CheckViewVC().tabItem {
+//                       Label("Check", systemImage: "list.dash")
+//                   }
                    FavouriteVC().tabItem {
                        Label("Favourite", systemImage: ImagesName.heart.rawValue)
                    }
@@ -31,6 +34,12 @@ struct ContentView: View {
                        Label("Profile", systemImage: ImagesName.user.rawValue)
                    }
                }.accentColor(.iconTintColor)
+                   .onReceive(appState.$pageToNavigationTo) { (nav) in
+                       if nav != nil { navigate = true }
+                   }
+//                   .sheet(isPresented: $navigate) {
+//                       Text("Notification")
+//                   }
                 
             }
             else{
@@ -39,6 +48,13 @@ struct ContentView: View {
             
         }
         .onAppear(perform: {
+            SwiftLocation.gpsLocation().then {
+                print("Location is \($0.location)")
+                if let cor = $0.location?.coordinate {
+                    golbalLocation = cor
+                    vm.userLocation = cor
+                }
+            }
             vm.getUserData(key: StringKeys.saveUserKey)
         })
     }

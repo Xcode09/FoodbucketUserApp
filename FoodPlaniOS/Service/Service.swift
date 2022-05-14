@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import MultipartForm
 import Alamofire
 struct NetworkError: Error {
     let initialError: String
@@ -51,6 +50,8 @@ class Service {
         
     }
     
+    
+    
     func uploadFormData<T:Codable>(url:String,method:String="GET",isHeaderToke:Bool=false,parameters:[String:String]=[:],imgData:Data)-> AnyPublisher<DataResponse<T, NetworkError>, Never>
     
     {
@@ -78,5 +79,44 @@ class Service {
             }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
+    }
+    
+    
+    func getNearByShops(url:String,parameters:[String:Any],complicationHandler:@escaping (([ShopListModel]?,NetworkError?)->Void)){
+        
+        var headers : HTTPHeaders = [
+            "Content-Type":"application/json"
+        ]
+        if let user : LoginDataModel = UserDefaults.standard.get(StringKeys.saveUserKey) {
+            headers.add(name: "Authorization", value: "Bearer \(user.accessToken ?? "")")
+        }
+        AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+            .validate()
+            .responseJSON { result in
+                switch result.result{
+                case .success(let value):
+                    if let dic = value as? [String:Any]{
+                        if let data = dic["data"] as? [String:Any]{
+                            if let shops = data["2"] as? [NSDictionary]{
+                                do{
+                                    let js = try JSONSerialization.data(withJSONObject: shops, options: .fragmentsAllowed)
+                                    let model = try JSONDecoder().decode([ShopListModel].self, from: js)
+                                    complicationHandler(model,nil)
+                                }catch let er{
+                                    complicationHandler(nil,NetworkError.init(initialError: er.localizedDescription))
+                                }
+                            }
+                        }
+                        else{
+                            complicationHandler([],nil)
+                        }
+                    }
+                    else{
+                        complicationHandler(nil,NetworkError.init(initialError: "Error in dictionry"))
+                    }
+                case .failure(let e):
+                    complicationHandler(nil,NetworkError.init(initialError: e.localizedDescription))
+                }
+            }
     }
 }

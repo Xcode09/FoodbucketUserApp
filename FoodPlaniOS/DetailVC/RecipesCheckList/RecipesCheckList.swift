@@ -24,9 +24,19 @@ fileprivate class RecipesCheckListViewModel:ObservableObject{
                 self.errorMessage = dataResponse.error?.initialError ?? ""
             }else{
                 if let data = dataResponse.value?.data{
-                    self.receips =  data
-                    guard let ingred = data[0].ingredients else {return}
-                    self.ingredients = ingred
+                    if data.count > 0 {
+                        self.receips =  data
+                        guard let ingred = data.first?.ingredients else {
+                            self.errorMessage = "No Recipe Found"
+                            return
+                            
+                        }
+                        self.ingredients = ingred
+                    }else{
+                        self.errorMessage = "No Recipe Found"
+                        self.receips =  data
+                    }
+                    
                 }
                 
             }
@@ -36,7 +46,7 @@ fileprivate class RecipesCheckListViewModel:ObservableObject{
 struct RecipesCheckList: View {
     @State private var selection: [String]? = []
     @State private var isScanTapped = false
-    
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject private var vm = RecipesCheckListViewModel()
 ////    let receipes : [Recipes]
 //    let ingredients : [Ingredient]
@@ -47,67 +57,102 @@ struct RecipesCheckList: View {
         vm.getSelectRecipe(ApiEndPoints.customerSelectRecipes, id: rec_id)
     }
     var body: some View {
-        if vm.receips.count > 0{
-            ScrollView{
-                VStack(spacing:10){
-                    KFImage.url(URL(string: vm.receips[0].imageURL ?? ""))
-                        .resizable()
-                        .frame(maxHeight:200)
-                    Button(action: {
-                        isScanTapped.toggle()
-                    }) {
-                        Text("Scan Qr Code")
-                            .foregroundColor(.white)
-                            
+        NavigationView{
+            if vm.receips.count > 0{
+                ScrollView{
+                    VStack(spacing:10){
+                        Spacer()
                         
-                    }.frame(maxWidth:.infinity,maxHeight: 46)
-                        .background(RoundedRectangle(cornerRadius: 8).fill(Color.iconTintColor))
-                    Text("Ingredients")
-                        .frame(maxWidth:.infinity,alignment: .leading)
-                        .font(.system(size: 18, weight: .bold, design: .default))
-                        .foregroundColor(.black)
-                    ForEach(vm.ingredients,id:\.id)
-                    {
-                        index in
-                        if selection?.count ?? 0 > 0,
-                           selection!.contains(index.ingredientName?[0].name ?? "")
+                        KFImage.url(URL(string: vm.receips[0].imageURL ?? ""))
+                            .resizable()
+                            .scaledToFill()
+                        Spacer()
+                        Button(action: {
+                            isScanTapped.toggle()
+                        }) {
+                            Text("Scan Qr Code")
+                                .frame(maxWidth:.infinity)
+                                .foregroundColor(.white)
+                                
+                            
+                        }.frame(height:46)
+                            .background(RoundedRectangle(cornerRadius: 8).fill(Color.iconTintColor))
+                        Text("Ingredients")
+                            .frame(maxWidth:.infinity,alignment: .leading)
+                            .font(.system(size: 18, weight: .bold, design: .default))
+                            .foregroundColor(.black)
+                        ForEach(vm.ingredients,id:\.id)
                         {
-                            HStack {
-                                KFImage.url(URL(string: index.ingredientName?[0].imageURL ?? ""))
-                                    .resizable()
-                                    .frame(maxWidth:80,maxHeight:80)
-                                VStack{
-                                    Text(index.ingredientName?[0].name ?? "")
-                                    Text(index.ingredientName?[0].totalQuantity ?? "")
-                                    Text(index.ingredientName?[0].unit ?? "")
+                            index in
+                            if selection?.count ?? 0 > 0,
+                               selection!.contains(index.ingredientName?.first?.ingreID ?? "")
+                            {
+                                HStack {
+                                    KFImage.url(URL(string: index.ingredientName?.first?.imageURL ?? ""))
+                                        .resizable()
+                                        .frame(maxWidth:80,maxHeight:80)
+                                    VStack{
+                                        Text(index.ingredientName?.first?.name ?? "")
+                                        Text("\(index.ingredientName?.first?.totalQuantity ?? "") \(index.ingredientName?.first?.unit ?? "")")
+                                        
+                                    }
+                                    Spacer()
+                                    Image(systemName:"checkmark.circle")
                                 }
-                                Spacer()
-                                Image(systemName:"checkmark.circle")
+                            }else{
+                                HStack {
+                                    KFImage.url(URL(string: index.ingredientName?.first?.imageURL ?? ""))
+                                        .resizable()
+                                        .frame(maxWidth:80,maxHeight:80)
+                                    VStack{
+                                        Text(index.ingredientName?.first?.name ?? "")
+                                        Text("\(index.ingredientName?.first?.totalQuantity ?? "") \(index.ingredientName?.first?.unit ?? "")")
+                                    }
+                                    Spacer()
+                                    Image(systemName:"circle")
+                                }
                             }
-                        }else{
-                            HStack {
-                                KFImage.url(URL(string: index.ingredientName?[0].imageURL ?? ""))
+
+                        }
+                        
+                    }.frame(maxWidth: .infinity)
+                        .padding([.all], 10)
+                        .fullScreenCover(isPresented: $isScanTapped) {
+                            ScannerView(isPresented: $isScanTapped, text: $selection, recipe: .constant(nil))
+                        }
+                        .onChange(of: selection) { newValue in
+                            debugPrint("ddd",selection)
+                        }
+                    
+                    
+                }
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle(Text(vm.receips.first?.name ?? ""))
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Button(action: {
+                            presentationMode.wrappedValue.dismiss()
+                        }) {
+                            Image(systemName: "chevron.left")
+                                .resizable()
+                        }
+                    }
+                }
+            }else{
+                Text(vm.errorMessage)
+                    .font(.largeTitle)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationTitle(Text(""))
+                    .toolbar {
+                        ToolbarItemGroup(placement: .navigationBarLeading) {
+                            Button(action: {
+                                presentationMode.wrappedValue.dismiss()
+                            }) {
+                                Image(systemName: "chevron.left")
                                     .resizable()
-                                    .frame(maxWidth:80,maxHeight:80)
-                                VStack{
-                                    Text(index.ingredientName?[0].name ?? "")
-                                    Text(index.ingredientName?[0].totalQuantity ?? "")
-                                    Text(index.ingredientName?[0].unit ?? "")
-                                }
-                                Spacer()
-                                Image(systemName:"circle")
                             }
                         }
-
                     }
-                    
-                }.frame(maxWidth: .infinity)
-                    .padding([.all], 10)
-                    .fullScreenCover(isPresented: $isScanTapped) {
-                        ScannerView(isPresented: $isScanTapped, text: $selection, recipe: .constant(nil))
-                    }
-                
-                
             }
         }
         

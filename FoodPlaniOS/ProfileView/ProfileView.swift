@@ -16,10 +16,10 @@ fileprivate struct CellDataModel:Identifiable{
 extension CellDataModel{
     static func getData()->[CellDataModel]{
         return [
-            .init(name: "My Details", icon: "user"),
-            .init(name: "Notification", icon: "user"),
-            .init(name: "Ask a question", icon: "user"),
-            .init(name: "Share the app", icon: "user")
+            .init(name: "Мои детали", icon: "user"),
+            .init(name: "Уведомление", icon: "user"),
+            .init(name: "Задайте вопрос", icon: "user"),
+            .init(name: "Поделитесь приложением", icon: "user")
         ]
     }
 }
@@ -42,7 +42,7 @@ struct ProfileView: View {
                     LazyVStack(alignment: .leading, spacing: 10){
                         ForEach(CellDataModel.getData(),id:\.id){
                             index in
-                            CellRow(cellIcon:index.icon, cellTitle:index.name)
+                            CellRow(cellIcon:index.icon, cellTitle:index.name).environmentObject(vm)
                             Divider()
                         }
                         
@@ -53,10 +53,10 @@ struct ProfileView: View {
                 
                 VStack(spacing:10)
                 {
-                    Text("Privacy Policy")
+                    Text("Политика конфиденциальности")
                         .foregroundColor(.green)
                     
-                    Text("Terms of user")
+                    Text("Условия использования")
                         .foregroundColor(.green)
                 }
                 Spacer().frame(height:20)
@@ -79,7 +79,7 @@ struct ProfileView: View {
                 
             }
             .background(Color(UIColor.groupTableViewBackground))
-            .navigationBarTitle(vm.currentUser?.name ?? "Guest")
+            .navigationBarTitle("Profile")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
@@ -88,6 +88,8 @@ struct ProfileView: View {
 fileprivate struct CellRow:View{
     let cellIcon:String
     let cellTitle:String
+    @State var myDetailsTapped = false
+    @EnvironmentObject var env : UserStateViewModel
     var body: some View{
         ZStack{
             HStack{
@@ -105,6 +107,14 @@ fileprivate struct CellRow:View{
                 
             }
             .padding([.all], 10)
+            .onTapGesture {
+                if cellTitle == CellDataModel.getData().first?.name{
+                    myDetailsTapped.toggle()
+                }
+            }
+            .sheet(isPresented: $myDetailsTapped) {
+                MyDetailsView().environmentObject(env)
+            }
         }
     }
 }

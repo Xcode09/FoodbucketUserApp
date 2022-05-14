@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct FoodPlaniOSApp: App {
     @StateObject var userStateViewModel = UserStateViewModel()
-    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
             //RecipesCheckList()

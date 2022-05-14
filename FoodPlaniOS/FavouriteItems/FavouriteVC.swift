@@ -21,6 +21,11 @@ fileprivate class FavouriteVCModelView:ObservableObject{
             if dataResponse.error != nil{
                 self.errorMessage = dataResponse.error?.initialError ?? ""
             }else{
+                guard dataResponse.value?.data?.count ?? 0 > 0 else{
+                    self.errorMessage = "избранное не найдено"
+                    return
+                }
+                self.errorMessage = ""
                 if let data = dataResponse.value?.data
                 {
                     for re in data{
@@ -40,7 +45,7 @@ struct FavouriteVC: View {
     @ObservedObject fileprivate var vm = FavouriteVCModelView()
     var body: some View {
         NavigationView{
-            if vm.receips.count > 0 {
+            if vm.errorMessage.isEmpty {
                 ZStack{
                     ScrollView{
                         LazyVStack(alignment:.leading,spacing:40){
@@ -51,65 +56,23 @@ struct FavouriteVC: View {
                     }
                 }.navigationTitle("Favourites")
             }else{
-                Text("избранное не найдено")
+                Text(vm.errorMessage).font(.largeTitle)
             }
             
         }.onAppear {
             vm.getFavouriteRecipe()
         }
     }
-    
-//    private var mainCellView:some View{
-//        VStack(alignment:.leading){
-//            LabelTextView(text: "Receipe for rice", forColor: .textColor, fontWeight: .bold, size: 18)
-//            ZStack(alignment:.bottom){
-//                Image("A")
-//                    .resizable()
-//                    .scaledToFill()
-//                    .frame(maxWidth:.infinity, maxHeight: 180)
-//                VStack(alignment:.trailing){
-//                    HStack(spacing:8){
-//                        HStack{
-//                            Image(systemName: "clock")
-//                            Text("75").foregroundColor(.white)
-//                                .font(.system(size: 16, weight: .semibold, design: .default))
-//                                .shadow(color: .gray, radius: 3, x: 1, y: 1)
-//
-//                        }
-//                        HStack{
-//                            Image(systemName: "clock")
-//                            Text("1").foregroundColor(.white)
-//                                .font(.system(size: 16, weight: .semibold, design: .default))
-//                                .shadow(color: .gray, radius: 3, x: 1, y: 1)
-//
-//                        }
-//                        Spacer()
-//                    }.foregroundColor(.white)
-//                        .padding([.leading,.bottom], 5)
-//                }
-//                .frame(maxWidth:.infinity)
-//
-//            }.cornerRadius(10)
-//            HStack(spacing:10){
-//                LabelTextView(text: "Lopa Lpa lmas ygt.Lopa Lpa lmas ygt", forColor: .textColor, fontWeight: .semibold, size: 16)
-//                Spacer()
-//                VStack{
-//                    Button(action: {}) {
-//                        Text("...")
-//                    }
-//                    Spacer()
-//                }
-//            }.frame(maxWidth:.infinity)
-//        }
-//    }
 }
 
 
 fileprivate struct FavouriteCellRow:View{
     let rec:Recipe
+    @State var isFavouriteTapped = false
+    @State var isQRCodeTapped = false
     var body :some View{
         VStack(alignment:.leading){
-            LabelTextView(text:rec.name ?? "", forColor: .textColor, fontWeight: .bold, size: 18)
+            LabelTextView(text:rec.category ?? "", forColor: .textColor, fontWeight: .bold, size: 18)
             ZStack(alignment:.bottom){
                 KFImage.url(URL(string: rec.imageURL ?? ""))
                     .resizable()
@@ -139,15 +102,32 @@ fileprivate struct FavouriteCellRow:View{
                 
             }.cornerRadius(10)
             HStack(spacing:10){
-                LabelTextView(text:rec.category ?? "", forColor: .textColor, fontWeight: .semibold, size: 16)
+                LabelTextView(text:rec.name ?? "", forColor: .textColor, fontWeight: .semibold, size: 16)
                 Spacer()
-                VStack{
+                HStack(spacing:10){
+                    Spacer()
+                    Button(action: {
+                        isQRCodeTapped.toggle()
+                    }) {
+                        Image(systemName: "qrcode.viewfinder")
+                            .resizable()
+                    }.frame(width:30)
+                    
                     Button(action: {}) {
                         Text("...")
-                    }
-                    Spacer()
+                    }.frame(width:30)
+                    //Spacer()
                 }
             }.frame(maxWidth:.infinity)
+        }
+        .onTapGesture {
+            isFavouriteTapped.toggle()
+        }
+        .fullScreenCover(isPresented: $isFavouriteTapped) {
+            DetailVC(id: "\(rec.id ?? 0)")
+        }
+        .fullScreenCover(isPresented: $isQRCodeTapped) {
+            RecipesCheckList(rec_id: "\(rec.id ?? 0)")
         }
     }
 }
