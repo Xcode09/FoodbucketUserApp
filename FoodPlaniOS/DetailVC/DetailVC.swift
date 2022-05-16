@@ -271,6 +271,8 @@ struct DetailVC: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .modifier(InsetViewModifier())
+            }.onTapGesture {
+                UIApplication.shared.open(URL(string:"https://img.youtube.com/vi/\(vm.receips.first?.videoURL?.replacingOccurrences(of: "https://www.youtube.com/watch?v=", with: "") ?? "")/0.jpg")!)
             }
         }
     private var bottomNavBar:some View{

@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		134AAF9927E8C24500694FAD /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 134AAF9827E8C24500694FAD /* AlertToast */; };
 		1350259B27F8732E0099797B /* RecipesCheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350259A27F8732E0099797B /* RecipesCheckList.swift */; };
-		13926C9C281AB1CE003CC7EA /* SwiftLocation in Frameworks */ = {isa = PBXBuildFile; productRef = 13926C9B281AB1CE003CC7EA /* SwiftLocation */; };
 		13926C9E281AB6D0003CC7EA /* ShopListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13926C9D281AB6D0003CC7EA /* ShopListModel.swift */; };
 		13926CA0281AC3CA003CC7EA /* CheckOutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13926C9F281AC3CA003CC7EA /* CheckOutModel.swift */; };
+		1398330D2832605A00AAE496 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1398330C2832605A00AAE496 /* Alamofire */; };
 		13A15E7227A957F3004B0C12 /* ShopsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A15E7127A957F3004B0C12 /* ShopsList.swift */; };
 		13A65F13282BD5EF00B5A5D8 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A65F12282BD5EF00B5A5D8 /* SearchView.swift */; };
 		13A9B4F32825721C00663CB1 /* MyDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A9B4F22825721C00663CB1 /* MyDetailsView.swift */; };
@@ -29,11 +28,12 @@
 		13C1C03E27663D0C0032E6AB /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1C03D27663D0B0032E6AB /* HomeVC.swift */; };
 		13C1C04127664C270032E6AB /* CheckViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1C04027664C270032E6AB /* CheckViewVC.swift */; };
 		13C1C04427664ECE0032E6AB /* FavouriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1C04327664ECE0032E6AB /* FavouriteVC.swift */; };
+		13DBC48A2832614400FEB032 /* SwiftLocation in Frameworks */ = {isa = PBXBuildFile; productRef = 13DBC4892832614400FEB032 /* SwiftLocation */; };
+		13DBC48D2832615400FEB032 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 13DBC48C2832615400FEB032 /* AlertToast */; };
 		13DFDCFB276A3F4500570519 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DFDCFA276A3F4500570519 /* DetailVC.swift */; };
 		13FA72382768BBE200A4BCDE /* CodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA72372768BBE200A4BCDE /* CodeScanner.swift */; };
 		13FA723A2768BC5400A4BCDE /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA72392768BC5400A4BCDE /* ScannerView.swift */; };
 		13FA723D2768BDF000A4BCDE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA723C2768BDF000A4BCDE /* ProfileView.swift */; };
-		13FAFD4427E5F7FA009A2C9F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 13FAFD4327E5F7FA009A2C9F /* Alamofire */; };
 		13FAFD4727E619D3009A2C9F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FAFD4627E619D3009A2C9F /* LoginView.swift */; };
 		13FAFD4927E62172009A2C9F /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FAFD4827E62172009A2C9F /* SignUpView.swift */; };
 		13FF5050281EB6960008E771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FF504F281EB6960008E771 /* AppDelegate.swift */; };
@@ -52,7 +52,7 @@
 		13B680E427E39E6F00D89830 /* Contants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contants.swift; sourceTree = "<group>"; };
 		13BD508A276FACEA0054B579 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		13C0CA7C2772167400B254C7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		13C1C02B27663CD20032E6AB /* FoodPlaniOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodPlaniOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13C1C02B27663CD20032E6AB /* FOODDOM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FOODDOM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13C1C02E27663CD20032E6AB /* FoodPlaniOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPlaniOSApp.swift; sourceTree = "<group>"; };
 		13C1C03027663CD20032E6AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		13C1C03227663CD40032E6AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,10 +74,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13FAFD4427E5F7FA009A2C9F /* Alamofire in Frameworks */,
-				13926C9C281AB1CE003CC7EA /* SwiftLocation in Frameworks */,
-				134AAF9927E8C24500694FAD /* AlertToast in Frameworks */,
 				13B680EB27E3AE4200D89830 /* Kingfisher in Frameworks */,
+				13DBC48D2832615400FEB032 /* AlertToast in Frameworks */,
+				13DBC48A2832614400FEB032 /* SwiftLocation in Frameworks */,
+				1398330D2832605A00AAE496 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,7 +154,7 @@
 		13C1C02C27663CD20032E6AB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13C1C02B27663CD20032E6AB /* FoodPlaniOS.app */,
+				13C1C02B27663CD20032E6AB /* FOODDOM.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -279,12 +279,12 @@
 			name = FoodPlaniOS;
 			packageProductDependencies = (
 				13B680EA27E3AE4200D89830 /* Kingfisher */,
-				13FAFD4327E5F7FA009A2C9F /* Alamofire */,
-				134AAF9827E8C24500694FAD /* AlertToast */,
-				13926C9B281AB1CE003CC7EA /* SwiftLocation */,
+				1398330C2832605A00AAE496 /* Alamofire */,
+				13DBC4892832614400FEB032 /* SwiftLocation */,
+				13DBC48C2832615400FEB032 /* AlertToast */,
 			);
 			productName = FoodPlaniOS;
-			productReference = 13C1C02B27663CD20032E6AB /* FoodPlaniOS.app */;
+			productReference = 13C1C02B27663CD20032E6AB /* FOODDOM.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -314,9 +314,9 @@
 			mainGroup = 13C1C02227663CD20032E6AB;
 			packageReferences = (
 				13B680E927E3AE4200D89830 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				13FAFD4227E5F7FA009A2C9F /* XCRemoteSwiftPackageReference "Alamofire" */,
-				134AAF9727E8C24500694FAD /* XCRemoteSwiftPackageReference "AlertToast" */,
-				13926C9A281AB1CE003CC7EA /* XCRemoteSwiftPackageReference "SwiftLocation" */,
+				1398330B2832605A00AAE496 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				13DBC4882832614400FEB032 /* XCRemoteSwiftPackageReference "SwiftLocation" */,
+				13DBC48B2832615400FEB032 /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 13C1C02C27663CD20032E6AB /* Products */;
 			projectDirPath = "";
@@ -531,7 +531,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Muhammad-Ali.FoodPlaniOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FOODDOM;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -566,7 +566,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Muhammad-Ali.FoodPlaniOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = FOODDOM;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -597,17 +597,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		134AAF9727E8C24500694FAD /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+		1398330B2832605A00AAE496 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/elai950/AlertToast.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-		13926C9A281AB1CE003CC7EA /* XCRemoteSwiftPackageReference "SwiftLocation" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/malcommac/SwiftLocation.git";
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.0.0;
@@ -621,36 +613,44 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		13FAFD4227E5F7FA009A2C9F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		13DBC4882832614400FEB032 /* XCRemoteSwiftPackageReference "SwiftLocation" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			repositoryURL = "https://github.com/malcommac/SwiftLocation.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.0.0;
 			};
 		};
+		13DBC48B2832615400FEB032 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		134AAF9827E8C24500694FAD /* AlertToast */ = {
+		1398330C2832605A00AAE496 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 134AAF9727E8C24500694FAD /* XCRemoteSwiftPackageReference "AlertToast" */;
-			productName = AlertToast;
-		};
-		13926C9B281AB1CE003CC7EA /* SwiftLocation */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 13926C9A281AB1CE003CC7EA /* XCRemoteSwiftPackageReference "SwiftLocation" */;
-			productName = SwiftLocation;
+			package = 1398330B2832605A00AAE496 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		13B680EA27E3AE4200D89830 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 13B680E927E3AE4200D89830 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		13FAFD4327E5F7FA009A2C9F /* Alamofire */ = {
+		13DBC4892832614400FEB032 /* SwiftLocation */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 13FAFD4227E5F7FA009A2C9F /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
+			package = 13DBC4882832614400FEB032 /* XCRemoteSwiftPackageReference "SwiftLocation" */;
+			productName = SwiftLocation;
+		};
+		13DBC48C2832615400FEB032 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 13DBC48B2832615400FEB032 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

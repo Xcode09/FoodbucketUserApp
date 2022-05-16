@@ -30,24 +30,7 @@ final class HomeVCViewModel:ObservableObject{
             }
         }
     }
-    func getCategoriesRecipes(_ url:String,category:String){
-        isLoading = true
-        let pu : AnyPublisher<DataResponse<RecipesModel, NetworkError>, Never> =  Service.shared.fetchData(url: url, method: "POST",isHeaderToke: true, parameters: ["category":category])
-        cancellationToken = pu.sink { (dataResponse) in
-            self.isLoading = false
-            if dataResponse.error != nil{
-                //self.errorMessage = dataResponse.error?.initialError ?? ""
-            }else{
-                if let data = dataResponse.value?.data{
-                    guard data.count > 0 else {
-                        return
-                    }
-                    self.receips =  data
-                }
-                
-            }
-        }
-    }
+    
 }
 
 struct HomeVC: View {
@@ -57,6 +40,7 @@ struct HomeVC: View {
     @State private var isSearchClick = false
     @State private var scannedRecipeId:String? = ""
     private var categories = ["lunch","dinner","breakfast"]
+    @State private var selectedCategory = ""
     @ObservedObject var vm = HomeVCViewModel()
     @EnvironmentObject var userState: UserStateViewModel
     init(){
@@ -111,7 +95,7 @@ struct HomeVC: View {
                     ScannerView(isPresented: $isQrCodeTapped, text: .constant(nil), recipe: $scannedRecipeId)
                 })
                 .fullScreenCover(isPresented: $isSearchClick, content: {
-                    SearchView()
+                    SearchView().environmentObject(userState)
                 })
                 .onChange(of: vm.errorMessage) { _ in
                     if vm.errorMessage == StringKeys.authError{
@@ -156,7 +140,10 @@ struct HomeVC: View {
                             .frame(width: 120, height: 120)
                     }.cornerRadius(10)
                         .onTapGesture {
-                            vm.getCategoriesRecipes(ApiEndPoints.searchRecipes, category: index)
+                            self.userState.category = index
+                            DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+                                self.isSearchClick.toggle()
+                            }
                         }
                 }
             }.padding()

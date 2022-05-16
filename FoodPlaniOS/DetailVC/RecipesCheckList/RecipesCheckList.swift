@@ -97,7 +97,7 @@ struct RecipesCheckList: View {
                                         
                                     }
                                     Spacer()
-                                    Image(systemName:"checkmark.circle")
+                                    Image("check")
                                 }
                             }else{
                                 HStack {
@@ -110,6 +110,7 @@ struct RecipesCheckList: View {
                                     }
                                     Spacer()
                                     Image(systemName:"circle")
+                                        .foregroundColor(.iconTintColor)
                                 }
                             }
 

@@ -26,6 +26,7 @@ extension CellDataModel{
 struct ProfileView: View {
     @EnvironmentObject var vm: UserStateViewModel
     var dummyArr = ["one","two","three","four"]
+    @State var showingAlert = false
     var body: some View {
         NavigationView{
             ScrollView{
@@ -64,20 +65,30 @@ struct ProfileView: View {
                     ProgressView().progressViewStyle(CircularProgressViewStyle())
                 }else{
                     Button(action: {
-                        Task{
-                            await vm.signOut()
-                        }
+                        showingAlert.toggle()
                         
                     }) {
                         Text("Logout")
                             .foregroundColor(.red)
                     }
+                    .alert(isPresented:$showingAlert) {
+                        Alert(
+                            title: Text("Logout"),
+                            message: Text("Вы уверены, что вышли из системы?"),
+                            primaryButton: .destructive(Text("Logout")) {
+                                Task{
+                                    await vm.signOut()
+                                }
+                            },
+                            secondaryButton: .cancel(Text("Отмена"))
+                        )
+                    }
                 }
                 
-                
-                
-                
             }
+            .onAppear(perform: {
+                vm.getUserData(key: StringKeys.saveUserKey)
+            })
             .background(Color(UIColor.groupTableViewBackground))
             .navigationBarTitle("Profile")
             .navigationBarTitleDisplayMode(.inline)

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13C1C02A27663CD20032E6AB"
-               BuildableName = "FoodPlaniOS.app"
+               BuildableName = "FOODDOM.app"
                BlueprintName = "FoodPlaniOS"
                ReferencedContainer = "container:FoodPlaniOS.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13C1C02A27663CD20032E6AB"
-            BuildableName = "FoodPlaniOS.app"
+            BuildableName = "FOODDOM.app"
             BlueprintName = "FoodPlaniOS"
             ReferencedContainer = "container:FoodPlaniOS.xcodeproj">
          </BuildableReference>
@@ -63,7 +63,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13C1C02A27663CD20032E6AB"
-            BuildableName = "FoodPlaniOS.app"
+            BuildableName = "FOODDOM.app"
             BlueprintName = "FoodPlaniOS"
             ReferencedContainer = "container:FoodPlaniOS.xcodeproj">
          </BuildableReference>

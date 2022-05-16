@@ -35,6 +35,24 @@ final class SearchViewModel:ObservableObject{
             }
         }
     }
+    func getCategoriesRecipes(_ url:String,category:String){
+        isLoading = true
+        let pu : AnyPublisher<DataResponse<RecipesModel, NetworkError>, Never> =  Service.shared.fetchData(url: url, method: "POST",isHeaderToke: true, parameters: ["category":category])
+        cancellationToken = pu.sink { (dataResponse) in
+            self.isLoading = false
+            if dataResponse.error != nil{
+                //self.errorMessage = dataResponse.error?.initialError ?? ""
+            }else{
+                if let data = dataResponse.value?.data{
+                    guard data.count > 0 else {
+                        return
+                    }
+                    self.receips =  data
+                }
+                
+            }
+        }
+    }
 }
 struct SearchView: View {
     @State private var searchTxt = ""
@@ -42,6 +60,7 @@ struct SearchView: View {
     @State private var isNavigate = false
     @ObservedObject var vm = SearchViewModel()
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var userState: UserStateViewModel
     var body: some View {
         NavigationView{
             VStack{
@@ -77,7 +96,6 @@ struct SearchView: View {
                 }
                 Spacer()
             }
-            
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
@@ -93,7 +111,11 @@ struct SearchView: View {
                 DetailVC(id: vm.rec_id)
             }
             
-        }
+        }.onAppear(perform: {
+            if userState.category != "" {
+                vm.getCategoriesRecipes(ApiEndPoints.searchRecipes, category: userState.category)
+            }
+        })
     }
     private var cellListView:some View{
         LazyVStack(spacing:-10){
@@ -125,11 +147,11 @@ struct SearchView: View {
                             //Spacer()
                         }
                         Spacer()
-                        Button(action: {}) {
-                            VStack{
-                                Text("...").font(.system(size: 20, weight: .bold, design: .default))
-                            }
-                        }.padding([.trailing], 8)
+//                        Button(action: {}) {
+//                            VStack{
+//                                Text("...").font(.system(size: 20, weight: .bold, design: .default))
+//                            }
+//                        }.padding([.trailing], 8)
                         //Spacer()
                     }
                 }.frame(height:140)

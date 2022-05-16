@@ -15,6 +15,7 @@ class UserStateViewModel: ObservableObject {
     @Published var isLoggedIn = false
     @Published var isBusy = false
     @State var showToast = false
+    var category = ""
     var userLocation = CLLocationCoordinate2D.init()
     var currentUser : User? = nil
     func getUserData(key:String){

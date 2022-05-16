@@ -97,12 +97,17 @@ struct SignUpView: View {
                         
                 }
             }
-            
-            HStack{
-                Text("У вас уже есть аккаунт?")
-                Text("Войти")
-                    .foregroundColor(.green)
+            if !vm.canSubmit{
+                HStack{
+                    Text("У вас уже есть аккаунт?")
+                    Text("Войти")
+                        .foregroundColor(.green)
+                        .onTapGesture {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                }
             }
+           
             
             if localErrors != ""{
                 Text(localErrors)
