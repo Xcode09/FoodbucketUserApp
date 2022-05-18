@@ -160,7 +160,7 @@ struct HomeVC: View {
             ForEach(vm.receips, id: \.id) { rec in
                 ZStack{
                     HStack{
-                        KFImage.url(URL(string:rec.imageURL ?? ""))
+                        KFImage.url(URL(string:rec.imageURL?.replacingOccurrences(of: " ", with: "%20") ?? ""))
                             .resizable()
                             .diskCacheExpiration(.never)
                             .cacheMemoryOnly(false)
@@ -171,28 +171,31 @@ struct HomeVC: View {
                         Spacer().frame(width:2)
                         VStack(alignment: .leading, spacing: 8){
                             LabelTextView(text: rec.name ?? "", forColor:.textColor, fontWeight: .bold, size: 18)
-                            LabelTextView(text: rec.servings ?? "", forColor: .secondaryTextColor, fontWeight: .regular, size: 16)
+                            LabelTextView(text: rec.category ?? "", forColor:.textColor, fontWeight: .regular, size: 16)
                             HStack(spacing:8){
                                 HStack{
                                     Image(systemName: ImagesName.clock.rawValue)
-                                    Text(rec.cookingTime ?? "")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(maxWidth:15,maxHeight: 15)
+                                    //Text(rec.cookingTime ?? "")
+                                    LabelTextView(text: rec.cookingTime ?? "", forColor:.textColor, fontWeight: .regular, size: 16)
                                 }
                                 HStack{
                                     Image(systemName: ImagesName.user.rawValue)
-                                    Text(rec.servings ?? "")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(maxWidth:15,maxHeight: 15)
+                                    //Text(rec.servings ?? "")
+                                    LabelTextView(text: rec.servings ?? "", forColor:.textColor, fontWeight: .regular, size: 16)
                                 }
                             }
                             //Spacer()
                         }
                         Spacer()
-//                        Button(action: {}) {
-//                            VStack{
-//                                Text("...").font(.system(size: 20, weight: .bold, design: .default))
-//                            }
-//                        }.padding([.trailing], 8)
-                        //Spacer()
                     }
-                }.frame(height:140)
+                }
+                .frame(height:140)
                 
                     .onTapGesture {
                         vm.rec_id = "\(rec.id ?? 0)"

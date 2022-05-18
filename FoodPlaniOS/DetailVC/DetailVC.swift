@@ -197,7 +197,7 @@ struct DetailVC: View {
                         ingre in
                         
                         VStack(alignment:.center,spacing:10){
-                            KFImage.url(URL(string:ingre.ingredientName?.first?.imageURL ?? ""))
+                            KFImage.url(URL(string:ingre.ingredientName?.first?.imageURL?.replacingOccurrences(of: " ", with: "%20") ?? ""))
                                 .resizable()
                             
                                 .diskCacheExpiration(.never)
@@ -208,7 +208,7 @@ struct DetailVC: View {
                             Text(ingre.ingredientName?.first?.name ?? "").foregroundColor(.textColor)
                             
                             let qunty = Int(ingre.quantity?.replacingOccurrences(of: " ", with: "") ?? "") ?? 1
-                            Text("\(qunty*vm.quantity) \(ingre.ingredientName?.first?.unit ?? "")").foregroundColor(.red)
+                            Text("\(qunty*vm.quantity) \(ingre.ingredientName?.first?.unit ?? "")").foregroundColor(.textColor)
                         }
                         .background(Color.bgColor)
                         
@@ -227,7 +227,7 @@ struct DetailVC: View {
     
     private var mainHeaderView:some View{
         VStack(alignment:.leading){
-            KFImage.url(URL(string:vm.receips.count > 0 ? vm.receips[0].imageURL ?? "" : ""))
+            KFImage.url(URL(string:vm.receips.count > 0 ? vm.receips[0].imageURL?.replacingOccurrences(of: " ", with: "%20") ?? "" : ""))
                 .resizable()
                 .diskCacheExpiration(.never)
                 .cacheMemoryOnly(false)
@@ -246,7 +246,7 @@ struct DetailVC: View {
                     Text(step.title ?? "")
                         .font(.system(size: 18, weight: .bold, design: .default))
                         .foregroundColor(.textColor)
-                    KFImage.url(URL(string:step.imageURL ?? ""))
+                    KFImage.url(URL(string:step.imageURL?.replacingOccurrences(of: " ", with: "%20") ?? ""))
                         .resizable()
                         .diskCacheExpiration(.never)
                         .cacheMemoryOnly(false)

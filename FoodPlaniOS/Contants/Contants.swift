@@ -17,7 +17,7 @@ struct ApiEndPoints{
     static let addRecentRecipe = "\(ApiEndPoints().baseURL)customer/recent-recipe-add"
     
     static let addFavouriteRecipe = "\(ApiEndPoints().baseURL)customer/favourite-add"
-    
+    static let removeFavouriteRecipe = "\(ApiEndPoints().baseURL)customer/favourite-remove"
     static let customerAllRecentRecipe = "\(ApiEndPoints().baseURL)customer/recent-recipe"
     
     static let customerFavouriteRecipesView = "\(ApiEndPoints().baseURL)customer/favourite-view"

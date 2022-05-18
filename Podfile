@@ -6,6 +6,6 @@ target 'FoodPlaniOS' do
   use_frameworks!
 
   # Pods for FoodPlaniOS
-	pod 'CodeScanner',:git => 'https://github.com/twostraws/CodeScanner.git'
+	#pod 'CodeScanner',:git => 'https://github.com/twostraws/CodeScanner.git'
 
 end

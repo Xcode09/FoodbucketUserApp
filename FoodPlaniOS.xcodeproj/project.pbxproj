@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1328F69D2833C1F50015A2C9 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1328F69C2833C1F50015A2C9 /* Launch Screen.storyboard */; };
 		1350259B27F8732E0099797B /* RecipesCheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1350259A27F8732E0099797B /* RecipesCheckList.swift */; };
+		1373D3702833AF0C00012103 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 1373D36F2833AF0C00012103 /* AlertToast */; };
 		13926C9E281AB6D0003CC7EA /* ShopListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13926C9D281AB6D0003CC7EA /* ShopListModel.swift */; };
 		13926CA0281AC3CA003CC7EA /* CheckOutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13926C9F281AC3CA003CC7EA /* CheckOutModel.swift */; };
 		1398330D2832605A00AAE496 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1398330C2832605A00AAE496 /* Alamofire */; };
@@ -29,7 +31,6 @@
 		13C1C04127664C270032E6AB /* CheckViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1C04027664C270032E6AB /* CheckViewVC.swift */; };
 		13C1C04427664ECE0032E6AB /* FavouriteVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C1C04327664ECE0032E6AB /* FavouriteVC.swift */; };
 		13DBC48A2832614400FEB032 /* SwiftLocation in Frameworks */ = {isa = PBXBuildFile; productRef = 13DBC4892832614400FEB032 /* SwiftLocation */; };
-		13DBC48D2832615400FEB032 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 13DBC48C2832615400FEB032 /* AlertToast */; };
 		13DFDCFB276A3F4500570519 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DFDCFA276A3F4500570519 /* DetailVC.swift */; };
 		13FA72382768BBE200A4BCDE /* CodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA72372768BBE200A4BCDE /* CodeScanner.swift */; };
 		13FA723A2768BC5400A4BCDE /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FA72392768BC5400A4BCDE /* ScannerView.swift */; };
@@ -40,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1328F69B2833C0810015A2C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1328F69C2833C1F50015A2C9 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		1350259A27F8732E0099797B /* RecipesCheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesCheckList.swift; sourceTree = "<group>"; };
 		13926C9D281AB6D0003CC7EA /* ShopListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopListModel.swift; sourceTree = "<group>"; };
 		13926C9F281AC3CA003CC7EA /* CheckOutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutModel.swift; sourceTree = "<group>"; };
@@ -75,7 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B680EB27E3AE4200D89830 /* Kingfisher in Frameworks */,
-				13DBC48D2832615400FEB032 /* AlertToast in Frameworks */,
+				1373D3702833AF0C00012103 /* AlertToast in Frameworks */,
 				13DBC48A2832614400FEB032 /* SwiftLocation in Frameworks */,
 				1398330D2832605A00AAE496 /* Alamofire in Frameworks */,
 			);
@@ -162,6 +165,7 @@
 		13C1C02D27663CD20032E6AB /* FoodPlaniOS */ = {
 			isa = PBXGroup;
 			children = (
+				1328F69B2833C0810015A2C9 /* Info.plist */,
 				13FF504E281EB6800008E771 /* AppDelegate */,
 				13AF2D3627E7953800D62D28 /* ViewModels */,
 				13FAFD4527E619BC009A2C9F /* AuthenticationViews */,
@@ -179,6 +183,7 @@
 				13C1C03227663CD40032E6AB /* Assets.xcassets */,
 				13C1C03427663CD40032E6AB /* Preview Content */,
 				13C0CA7C2772167400B254C7 /* Extensions.swift */,
+				1328F69C2833C1F50015A2C9 /* Launch Screen.storyboard */,
 			);
 			path = FoodPlaniOS;
 			sourceTree = "<group>";
@@ -281,7 +286,7 @@
 				13B680EA27E3AE4200D89830 /* Kingfisher */,
 				1398330C2832605A00AAE496 /* Alamofire */,
 				13DBC4892832614400FEB032 /* SwiftLocation */,
-				13DBC48C2832615400FEB032 /* AlertToast */,
+				1373D36F2833AF0C00012103 /* AlertToast */,
 			);
 			productName = FoodPlaniOS;
 			productReference = 13C1C02B27663CD20032E6AB /* FOODDOM.app */;
@@ -316,7 +321,7 @@
 				13B680E927E3AE4200D89830 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				1398330B2832605A00AAE496 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				13DBC4882832614400FEB032 /* XCRemoteSwiftPackageReference "SwiftLocation" */,
-				13DBC48B2832615400FEB032 /* XCRemoteSwiftPackageReference "AlertToast" */,
+				1373D36E2833AF0C00012103 /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 13C1C02C27663CD20032E6AB /* Products */;
 			projectDirPath = "";
@@ -334,6 +339,7 @@
 			files = (
 				13C1C03627663CD40032E6AB /* Preview Assets.xcassets in Resources */,
 				13BD508B276FACEA0054B579 /* Localizable.strings in Resources */,
+				1328F69D2833C1F50015A2C9 /* Launch Screen.storyboard in Resources */,
 				13C1C03327663CD40032E6AB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,13 +520,14 @@
 				DEVELOPMENT_TEAM = CQ5AV8SV7S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FoodPlaniOS/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app wants to access your camera";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "App wants Location";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App wants location";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App wants to access library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
@@ -549,13 +556,14 @@
 				DEVELOPMENT_TEAM = CQ5AV8SV7S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FoodPlaniOS/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app wants to access your camera";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "App wants Location";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App wants location";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App wants to access library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
@@ -597,6 +605,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1373D36E2833AF0C00012103 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		1398330B2832605A00AAE496 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -621,17 +637,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		13DBC48B2832615400FEB032 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/elai950/AlertToast.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1373D36F2833AF0C00012103 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1373D36E2833AF0C00012103 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
 		1398330C2832605A00AAE496 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1398330B2832605A00AAE496 /* XCRemoteSwiftPackageReference "Alamofire" */;
@@ -646,11 +659,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 13DBC4882832614400FEB032 /* XCRemoteSwiftPackageReference "SwiftLocation" */;
 			productName = SwiftLocation;
-		};
-		13DBC48C2832615400FEB032 /* AlertToast */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 13DBC48B2832615400FEB032 /* XCRemoteSwiftPackageReference "AlertToast" */;
-			productName = AlertToast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

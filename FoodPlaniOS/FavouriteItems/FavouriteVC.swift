@@ -10,7 +10,7 @@ import Kingfisher
 import Combine
 import Alamofire
 fileprivate class FavouriteVCModelView:ObservableObject{
-    @Published var receips:[Recipe] = []
+    @Published var receips:[FavouriteReceipeModel] = []
     @Published var errorMessage = ""
     @Published var quantity = 1
     //    @Published var showToast = false
@@ -22,27 +22,46 @@ fileprivate class FavouriteVCModelView:ObservableObject{
                 self.errorMessage = dataResponse.error?.initialError ?? ""
             }else{
                 guard dataResponse.value?.data?.count ?? 0 > 0 else{
+                    //self.receips = []
                     self.errorMessage = "избранное не найдено"
                     return
                 }
                 self.errorMessage = ""
                 if let data = dataResponse.value?.data
                 {
-                    for re in data{
-                        if let rec = re.recipe {
-                            self.receips.append(rec)
-                        }
-                        
-                    }
+                    self.receips = data
+//                    for re in data{
+//                        if let rec = re.recipe {
+//                            self.receips.append(rec)
+//                        }
+//
+//                    }
                     
                 }
                 
             }
         }
     }
+    func removeRecipeToFav(id:String){
+        let pu : AnyPublisher<DataResponse<BasicModel, NetworkError>, Never> =  Service.shared.fetchData(url: ApiEndPoints.removeFavouriteRecipe, method: "POST", isHeaderToke: true,parameters: ["r_id":id])
+        cancellationToken = pu.sink { [weak self] (dataResponse) in
+            if dataResponse.error != nil{
+                self?.errorMessage = dataResponse.error?.initialError ?? ""
+            }else{
+                if let _ = dataResponse.value{
+                    //self.receips =  data
+                    //self.errorMessage = data.message
+                    self?.receips.removeAll()
+                    
+                    self?.getFavouriteRecipe()
+                }
+            }
+        }
+    }
 }
 struct FavouriteVC: View {
     @ObservedObject fileprivate var vm = FavouriteVCModelView()
+    @State private var isRemoveTapped = false
     var body: some View {
         NavigationView{
             if vm.errorMessage.isEmpty {
@@ -50,8 +69,12 @@ struct FavouriteVC: View {
                     ScrollView{
                         LazyVStack(alignment:.leading,spacing:40){
                             ForEach(vm.receips, id: \.id) { recipe in
-                                FavouriteCellRow(rec: recipe)
+                                FavouriteCellRow(rec: recipe.recipe!, isremoveTapped: $isRemoveTapped)
+                                    .onChange(of: isRemoveTapped) { newValue in
+                                        vm.removeRecipeToFav(id:recipe.recipeID ?? "")
+                                    }
                             }
+                            
                         }.padding()
                     }
                 }.navigationTitle("Favourites")
@@ -70,6 +93,7 @@ fileprivate struct FavouriteCellRow:View{
     let rec:Recipe
     @State var isFavouriteTapped = false
     @State var isQRCodeTapped = false
+    @Binding var isremoveTapped : Bool
     var body :some View{
         VStack(alignment:.leading){
             LabelTextView(text:rec.category ?? "", forColor: .textColor, fontWeight: .bold, size: 18)
@@ -113,7 +137,9 @@ fileprivate struct FavouriteCellRow:View{
                             .resizable()
                     }.frame(width:30)
                     
-                    Button(action: {}) {
+                    Button(action: {
+                        isremoveTapped.toggle()
+                    }) {
                         Text("...")
                     }.frame(width:30)
                     //Spacer()
